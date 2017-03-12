@@ -1,16 +1,12 @@
-MyService.factory('MyService', function(Restangular, $q){
+myapp.factory('MyService', function(Restangular, $q){
 	return {
 		addClient : function(clientDetails) {
 			var addClientDefer = $q.defer();
+			console.log(clientDetails);
 			var payload = {
-				company_name : clientDetails.companyName,
-				client_name : clientDetails.clientName,
-				email : clientDetails.email,
-				phone_number : clientDetails.phoneNumber,
-				company_pan_number : clientDetails.panCardNumber
-			}
-			if(clientDetails.altPhoneNumber) {
-				payload.alt_phone_number = clientDetails.altPhoneNumber;
+				name : clientDetails.name,
+				password : clientDetails.password,
+				email : clientDetails.email
 			}
 			Restangular.one('/client').post('', payload).then(function(data) {
 				if(data.returnCode == "SUCCESS") {

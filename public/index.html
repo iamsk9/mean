@@ -31,10 +31,8 @@
   <script src = "/js/app/app.js"></script>
   <script type="text/javascript" src = "/js/app/services/userService.js"></script>
   <script type="text/javascript" src = "/js/app/services/myService.js"></script>
-  <script type="text/javascript" src = "/js/app/directives/myDirectives.js"></script>
-  <script type="text/javascript" src = "/js/app/controllers/"></script>
-  <script type="text/javascript" src = "/js/app/controllers/"></script>
-  <script type="text/javascript" src = "/js/app/controllers/"></script>
+  <!--<script type="text/javascript" src = "/js/app/directives/myDirectives.js"></script>-->
+  <script type="text/javascript" src = "/js/app/controllers/HomeCtrl.js"></script>
   </head>
   <style type="text/css">
         /**
@@ -45,6 +43,6 @@
         }
   </style>
   <body ng-app="myapp">
-    {{5+4}}
+    <div ng-view></div>
   </body>
 </html>

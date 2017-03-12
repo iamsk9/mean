@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var jwt = require('jsonwebtoken');
 var config = require('./config/config');
 var cookieParser = require('cookie-parser');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var q = require('q');
 //var db = require('./db');
 

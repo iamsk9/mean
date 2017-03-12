@@ -12,10 +12,11 @@ var AuthorizationMiddleware = require('./middlewares/authorizationMiddleware');
 var IndexController = require('./controllers/indexController.js');
 
 var DashboardController = require('./controllers/dashBoardController.js');
-
-var ClientController = require('./controllers/clientController.js');
 */
-module.exports = function(/*app, apiRoutes, blobService*/) {
+var ClientController = require('./controllers/clientController.js');
+
+module.exports = function(app, apiRoutes, blobService) {
+  apiRoutes.post('/client', ClientController.addClient);
 /*
 	app.get('/', IndexController.handle);
 
