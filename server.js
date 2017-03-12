@@ -10,17 +10,17 @@ var config = require('./config/config');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var q = require('q');
-var db = require('./db');
-/*
+//var db = require('./db');
+
 var sqldb = require('./mysqldb');
-var connection = db.getConnection().then(function(connection) {
+var connection = sqldb.getConnection().then(function(connection) {
     console.log('Successfully connected to MySQL DB');
     connection.release();
 }, function(err){
 	console.log("Error in connecting to the DB - " + err);
-});*/
+});
 
-var connection = db.getConnection();
+//var connection = db.getConnection();
 
 var env = process.env.NODE_ENV || '';
 app.set('secret', config.secret);
