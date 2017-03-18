@@ -1,8 +1,61 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.ministry_logo{
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.header-top{
+  margin-bottom: 0px;
+  background-color: #000000;
+  border: 0;
+  font-size: 11px;
+  line-height: 1.428;
+  letter-spacing: 2px;
+  border-radius: 0;
+  font-family: sans-serif;
+}
+
+
+.header-bottom{
+  margin-bottom: 0px;
+  background-color: #532862;
+  border: 0;
+  font-size: 13px;
+  line-height: 1.428;
+  letter-spacing: 2px;
+  border-radius: 0;
+  font-family: sans-serif;
+}
+
+.navbar-brand{
+  font-size: 12px;
+  margin-right: 40px;
+}
+
+.navbar li a, .navbar, .navbar-brand{
+  color: #fff;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a{
+  background-color: #fff;
+  color: #532862;
+}
+
+.cover{
+  background: cover;
+}
+.carousel-control.right, .carousel-control.left
+{
+  color: #532862;
+}
+
+.carousel-indicators li{
+  border: 1px solid #532862;
+}
+
+.carousel-indicators li.active{
+  background-color: #532862;
 }

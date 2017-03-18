@@ -13,7 +13,7 @@ var IndexController = require('./controllers/indexController.js');
 
 var DashboardController = require('./controllers/dashBoardController.js');
 */
-var ClientController = require('./controllers/clientController.js');
+var ClientController = require('./user/controllers/clientController.js');
 
 module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/client', ClientController.addClient);
