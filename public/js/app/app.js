@@ -1,6 +1,6 @@
 var basepath = "/../templates";
 
-var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ngMessages', 'HomeCtrl',
+var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ngMessages',
 	'md.data.table', 'ngFileUpload', 'mdPickers']);
 
   myapp.config(function($mdThemingProvider, $locationProvider, RestangularProvider, $routeProvider){
@@ -14,7 +14,7 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
     });
   	$routeProvider
 			.when('/', {
-					templateUrl: basepath + '/home.html',
+					templateUrl: basepath + '/_home.html',
 					controller: 'MainController'
 			})
 			/*.when('/nerds', {
