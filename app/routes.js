@@ -13,28 +13,28 @@ var IndexController = require('./controllers/indexController.js');
 
 var DashboardController = require('./controllers/dashBoardController.js');
 */
-var ClientController = require('./user/controllers/clientController.js');
+var ClientController = require('./researcher/controllers/clientController.js');
 
 module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/client', ClientController.addClient);
 /*
 	app.get('/', IndexController.handle);
 
-	app.get('/document/:id', CustomRequestMiddleware.setUser, DocsController.downloadDocument);
+	app.get('/document/:id', CustomRequestMiddleware.setresearcher, DocsController.downloadDocument);
 
-	app.get('/client/resetpassword', UserController.sendResetPassword);
+	app.get('/client/resetpassword', researcherController.sendResetPassword);
 
   app.get('/clientform', ClientFormController.getClient);
 
-	app.get('/user/resetpassword', UserController.sendResetPassword);
+	app.get('/researcher/resetpassword', researcherController.sendResetPassword);
 
-	app.post('/resetPassword/:userId', UserController.resetPassword);
+	app.post('/resetPassword/:researcherId', researcherController.resetPassword);
 
-	apiRoutes.post('/authenticate', UserController.authenticate);
+	apiRoutes.post('/authenticate', researcherController.authenticate);
 
-	apiRoutes.post('/forgotpassword', UserController.forgotPassword);
+	apiRoutes.post('/forgotpassword', researcherController.forgotPassword);
 
-	apiRoutes.post('/register', UserController.register);
+	apiRoutes.post('/register', researcherController.register);
 
     apiRoutes.post('/clientform', ClientFormController.postClient);
 
@@ -42,7 +42,7 @@ module.exports = function(app, apiRoutes, blobService) {
 
 	apiRoutes.use(AuthorizationMiddleware.authorize);
 
-	apiRoutes.get('/logout', UserController.logout);
+	apiRoutes.get('/logout', researcherController.logout);
 
 	apiRoutes.get('/dashboard', DashboardController.getDashboardData);
 
@@ -70,15 +70,15 @@ module.exports = function(app, apiRoutes, blobService) {
 
 	apiRoutes.get('/docdownloads/:clientId', DocsController.getDocDownloads);
 
-	apiRoutes.get('/users', UserController.getUsers);
+	apiRoutes.get('/researchers', researcherController.getresearchers);
 
-	apiRoutes.post('/user', UserController.addUser);
+	apiRoutes.post('/researcher', researcherController.addresearcher);
 
-	apiRoutes.delete('/user/:userId', UserController.removeUser);
+	apiRoutes.delete('/researcher/:researcherId', researcherController.removeresearcher);
 
-	apiRoutes.patch('/user/:userId/enable', UserController.enableUser);
+	apiRoutes.patch('/researcher/:researcherId/enable', researcherController.enableresearcher);
 
-	apiRoutes.patch('/user/:userId', UserController.updateUser);
+	apiRoutes.patch('/researcher/:researcherId', researcherController.updateUser);
 
 	apiRoutes.post('/createDirectory', DocsController.createDirectory);
 

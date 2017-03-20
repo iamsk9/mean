@@ -1,4 +1,6 @@
-var basepath = "/../templates";
+var homepath = "/../templates";
+var researcherpath = "/../templates/researcher";
+var orgpath = "/../templates/org";
 
 var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ngMessages',
 	'md.data.table', 'ngFileUpload', 'mdPickers']);
@@ -14,8 +16,20 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
     });
   	$routeProvider
 			.when('/', {
-					templateUrl: basepath + '/_home.html',
-					controller: 'MainController'
+					templateUrl: homepath + '/_home.html',
+					controller: 'HomeController'
+			})
+			.when('/researcherLogin', {
+					templateUrl: researcherpath + '/_researcherLogin.html',
+					controller: 'ResearcherLoginController'
+			})
+			.when('/researcherRegistration', {
+					templateUrl: researcherpath + '/_researcherRegistration.html',
+					controller: 'ResearcherRegistrationController'
+			})
+			.when('/orgLogin', {
+					templateUrl: orgpath + '/_orgLogin.html',
+					controller: 'OrgLoginController'
 			})
 			/*.when('/nerds', {
 					templateUrl: basepath + '/nerd.html',

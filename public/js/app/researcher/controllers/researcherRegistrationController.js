@@ -1,4 +1,4 @@
-angular.module('orgLoginController', []).controller('MainController', function($scope, $mdToast, MyService) {
+myapp.controller('researcherRegistrationController', function($scope, $mdToast, MyService, $timeout) {
   $scope.goToResearcherLogin = function() {
     $location.path('/researcherLogin');
   }

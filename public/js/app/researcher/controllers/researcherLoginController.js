@@ -1,4 +1,4 @@
-myapp.controller('MainController', function($scope, $mdToast, MyService, $timeout) {
+myapp.controller('ResearcherLoginController', function($scope, $mdToast, MyService, $timeout) {
 
 	$scope.clock = "loading clock..."; // initialise the time variable
     $scope.tickInterval = 1000 //ms
@@ -10,6 +10,18 @@ myapp.controller('MainController', function($scope, $mdToast, MyService, $timeou
 
     // Start the timer
     $timeout(tick, $scope.tickInterval);
+
+		$scope.goToResearcherLogin = function() {
+			$location.path('/researcherLogin');
+		}
+
+		$scope.goToOrgLogin = function() {
+			$location.path('/orgLogin');
+		}
+
+		$scope.goToResearcherRegistration = function() {
+			$location.path('/researcherRegistration');
+		}
 
 	$scope.addClient = function() {
 		console.log($scope.client.name);
