@@ -24,4 +24,12 @@ myapp.controller('NotificationsController', function($scope, $mdToast, MyService
   {
     $location.path('/updates')
   }
+  $scope.goToNewProposal = function()
+  {
+    $location.path('/newProposal')
+  }
+  $scope.goToPreviousProposals = function()
+  {
+    $location.path('/previousProposals')
+  }
 });

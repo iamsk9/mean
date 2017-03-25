@@ -23,4 +23,12 @@ myapp.controller('NewsController', function($scope, $mdToast, MyService, $locati
   {
     $location.path('/updates')
   }
+  $scope.goToNewProposal = function()
+  {
+    $location.path('/newProposal')
+  }
+  $scope.goToPreviousProposals = function()
+  {
+    $location.path('/previousProposals')
+  }
 });

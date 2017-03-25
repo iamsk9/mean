@@ -1,5 +1,4 @@
-myapp.controller('OrganizationsController', function($scope, $mdToast, MyService, $location) {
-
+myapp.controller('PreviousProposalsController', function($scope, $mdToast, MyService, $location) {
   $scope.goToDashboard = function()
   {
     $location.path('/researcherDashboardPage')
