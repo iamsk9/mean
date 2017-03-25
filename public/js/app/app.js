@@ -35,6 +35,14 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					templateUrl: researcherpath + '/_dashboard.html',
 					controller: 'DashboardController'
 			})
+			.when('/newProposal', {
+					templateUrl: researcherpath + '/_newProposal.html',
+					controller: 'NewProposalController'
+			})
+			.when('/previousProposals', {
+					templateUrl: researcherpath + '/_previousProposals.html',
+					controller: 'PreviousProposalsController'
+			})
 			.when('/news', {
 					templateUrl: researcherpath + '/_news.html',
 					controller: 'NewsController'

@@ -24,4 +24,12 @@ myapp.controller('ProfileController', function($scope, $mdToast, MyService, $loc
   {
     $location.path('/updates')
   }
+  $scope.goToNewProposal = function()
+  {
+    $location.path('/newProposal')
+  }
+  $scope.goToPreviousProposals = function()
+  {
+    $location.path('/previousProposals')
+  }
 });

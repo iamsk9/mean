@@ -24,4 +24,12 @@ myapp.controller('DashboardController', function($scope, $mdToast, MyService, $l
   {
     $location.path('/updates')
   }
+  $scope.goToNewProposal = function()
+  {
+    $location.path('/newProposal')
+  }
+  $scope.goToPreviousProposals = function()
+  {
+    $location.path('/previousProposals')
+  }
 });

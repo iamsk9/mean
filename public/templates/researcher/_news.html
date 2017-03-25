@@ -24,7 +24,9 @@
         <ul class="nav navbar-nav">
           <li><a href="#/researcherDashboardPage"  ng-click="goToDashboard()"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
           <li><a href="#/notifications" ng-click="goToNotification()"><span class="glyphicon glyphicon-alert"></span> Notifications</a></li>
-          <li><a href="#/organizations" ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organization</a></li>
+          <li><a ng-click="goToNewProposal()"><span class="glyphicon glyphicon-plus"></span> New Proposals</a></li>
+          <li><a ng-click="goToPreviousProposals()"><span class="glyphicon glyphicon-ok"></span> Previous Proposals</a></li>
+          <li><a href="#/organizations" ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a href="#/profile" ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li class="active" ng-click="goToNews()"><a href="#/news"><span class="glyphicon glyphicon-cloud"></span> News</a></li>
           <li><a href="#/updates" ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
@@ -37,7 +39,7 @@
 <div class="col-md-10 content">
     <div class="panel panel-default">
        <div class="panel-heading">
-         Dashboard
+         News
        </div>
        <div class="panel-body">
          News Page
