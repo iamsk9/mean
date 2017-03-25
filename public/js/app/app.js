@@ -31,6 +31,9 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					templateUrl: orgpath + '/_orgLogin.html',
 					controller: 'OrgLoginController'
 			})
+			.when('/dashboardPage', {
+					templateUrl: researcherpath + '/_dashboard.html'
+			})
 			/*.when('/nerds', {
 					templateUrl: basepath + '/nerd.html',
 					controller: 'NerdController'

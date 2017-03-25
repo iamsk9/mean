@@ -18,6 +18,9 @@ myapp.controller('ResearcherLoginController', function($scope, $mdToast, MyServi
 		$scope.goToResearcherRegistration = function() {
 			$location.path('/researcherRegistration');
 		}
+		$scope.goTodashboardPage = function() {
+			$location.path('/dashboardPage');
+		}
 
 	$scope.addClient = function() {
 		console.log($scope.client.name);

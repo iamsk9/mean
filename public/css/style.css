@@ -311,3 +311,116 @@ p.change_link{
 #login{
 	z-index: 22;
 }
+
+.sidebar {
+	padding-left: 0;
+}
+
+.main-container {
+	background: #FFF;
+	padding-top: 40px;
+	margin-top: -20px;
+}
+
+:focus {
+	outline: none;
+}
+
+.side-menu {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #f8f8f8;
+	border-right: 1px solid #e7e7e7;
+}
+.side-menu .navbar {
+	border: none;
+}
+.side-menu .navbar-header {
+	width: 100%;
+	border-bottom: 1px solid #e7e7e7;
+}
+.side-menu .navbar-nav .active a {
+	background-color: transparent;
+	margin-right: -1px;
+	border-right: 5px solid #e7e7e7;
+}
+.side-menu .navbar-nav li {
+	display: block;
+	width: 100%;
+	border-bottom: 1px solid #e7e7e7;
+}
+.side-menu .navbar-nav li a {
+	padding: 15px;
+}
+.side-menu .navbar-nav li a .glyphicon {
+	padding-right: 10px;
+}
+.side-menu .brand-name-wrapper {
+	min-height: 50px;
+}
+.side-menu .brand-name-wrapper .navbar-brand {
+	display: block;
+}
+.side-body {
+	margin-left: 310px;
+}
+@media (max-width: 768px) {
+	.side-menu {
+		position: relative;
+		width: 100%;
+		height: 0;
+		border-right: 0;
+	}
+
+	.side-menu .navbar {
+		z-index: 999;
+		position: relative;
+		height: 0;
+		min-height: 0;
+		background-color:none !important;
+		border-color: none !important;
+	}
+	.side-menu .brand-name-wrapper .navbar-brand {
+		display: inline-block;
+	}
+  .side-menu-container > .navbar-nav.slide-in {
+  		animation: slidein 300ms forwards;
+  		transform-style: preserve-3d;
+  	}
+  	.side-menu-container > .navbar-nav {
+  		position: fixed;
+  		left: -300px;
+  		width: 300px;
+  		top: 43px;
+  		height: 100%;
+  		border-right: 1px solid #e7e7e7;
+  		background-color: #f8f8f8;
+  		overflow: auto;
+  		animation: slideout 300ms forwards;
+  		transform-style: preserve-3d;
+  	}
+    .side-body {
+		margin-left: 5px;
+		margin-top: 70px;
+		position: relative;
+		animation: bodyslideout 300ms forwards;
+		transform-style: preserve-3d;
+	}
+	.body-slide-in {
+		animation: bodyslidein 300ms forwards;
+		transform-style: preserve-3d;
+	}
+	.navbar-toggle-sidebar {
+		border: 0;
+		float: left;
+		padding: 18px;
+		margin: 0;
+		border-radius: 0;
+		background-color: #f3f3f3;
+	}
+  .side-menu .navbar-header {
+  position: fixed;
+  z-index: 3;
+  background-color: #f8f8f8;
+}
