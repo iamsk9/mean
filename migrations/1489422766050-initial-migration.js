@@ -58,7 +58,7 @@ exports.down = function(next) {
 	}
 	db.getConnection().then(function(connection) {
 		var query = [];
-		query = ["DROP TABLE user_tokens", "DROP TABLE clients","DROP TABLE docs","DROP TABLE users;"];
+		query = ["DROP TABLE organisations", "DROP TABLE researcher","DROP TABLE proposals","DROP TABLE updates","DROP TABLE notifications","DROP TABLE news;"];
 		for(var i in query) {
 			executeQuery(connection, query, i);
 		}
