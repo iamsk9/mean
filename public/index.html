@@ -37,6 +37,12 @@
     <script src = "/js/app/homeController.js"></script>
     <script type="text/javascript" src = "/js/app/researcher/controllers/researcherLoginController.js"></script>
     <script type="text/javascript" src = "/js/app/researcher/controllers/researcherRegistrationController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/dashboardController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/newsController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/notificationsController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/organizationsController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/profileController.js"></script>
+    <script type="text/javascript" src = "/js/app/researcher/controllers/updatesController.js"></script>
     <script type="text/javascript" src = "/js/app/researcher/services/researcherService.js"></script>
     <script type="text/javascript" src = "/js/app/researcher/services/myService.js"></script>
     <script type="text/javascript" src = "/js/app/researcher/directives/myDirectives.js"></script>
@@ -55,6 +61,28 @@
         }
   </style>
   <body ng-app="myapp">
+    <nav class="navbar header-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">{{ clock  | date:'medium'}} IST</a>
+        </div>
+		    <ul class="nav navbar-nav">
+					<li><a><span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a><span class="glyphicon glyphicon-arrow-down"></span>  Skip to main content</a></li>
+					<li><a><span class="glyphicon glyphicon-arrow-down"></span>  Skip to navigation</a></li>
+					<li><a><span class="glyphicon glyphicon-volume-up"></span>  Screen Reader Access</a></li>
+				</ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a>English</a></li>
+          <li><a>हिन्दी</a></li>
+        </ul>
+    	</div>
+    </nav>
+
+		<div class="container">
+			<img src="../images/logo_2.png" alt="Home" / class="ministry_logo">
+		</div>
+
     <div ng-view></div>
   </body>
 </html>

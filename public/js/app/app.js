@@ -31,19 +31,31 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					templateUrl: orgpath + '/_orgLogin.html',
 					controller: 'OrgLoginController'
 			})
-			.when('/dashboardPage', {
-					templateUrl: researcherpath + '/_dashboard.html'
+			.when('/researcherDashboardPage', {
+					templateUrl: researcherpath + '/_dashboard.html',
+					controller: 'DashboardController'
 			})
-			/*.when('/nerds', {
-					templateUrl: basepath + '/nerd.html',
-					controller: 'NerdController'
+			.when('/news', {
+					templateUrl: researcherpath + '/_news.html',
+					controller: 'NewsController'
 			})
-			.when('/geeks', {
-					templateUrl: basepath + '/geek.html',
-					controller: 'GeekController'
-			});*/
-  });
+			.when('/notifications', {
+					templateUrl: researcherpath + '/_notifications.html',
+					controller: 'NotificationsController'
+			})
+			.when('/profile', {
+					templateUrl: researcherpath + '/_profile.html',
+					controller: 'ProfileController'
+			})
+			.when('/updates', {
+					templateUrl: researcherpath + '/_updates.html',
+					controller: 'UpdatesController'
+			})
+			.when('/organizations', {
+					templateUrl: researcherpath + '/_organizations.html',
+					controller: 'OrganizationsController'
+			})
+});
 
-	myapp.run(function($rootScope, $mdToast, $location, MyService, $mdSidenav,$mdDialog){
-
-	});
+myapp.run(function($rootScope, $mdToast, MyService, $mdSidenav,$mdDialog){
+});
