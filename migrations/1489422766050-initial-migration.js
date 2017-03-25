@@ -17,19 +17,28 @@ exports.up = function(next) {
   	db.getConnection().then(function(connection) {
       console.log("Yes");
   		var query = [];
-  		query = ["CREATE TABLE users (id int NOT NULL AUTO_INCREMENT, first_name varchar(255), last_name varchar(255), \
-  			email varchar(255) NOT NULL, password varchar(255) NULL, user_role varchar(255) NOT NULL,\
-  			 created_at DATETIME, deleted_at DATETIME,modified_at DATETIME, PRIMARY KEY(id));",
-  		"CREATE TABLE user_tokens (id int NOT NULL AUTO_INCREMENT, user_id int NOT NULL,\
-  		session_token varchar(255) NOT NULL, created_at DATETIME, deleted_at DATETIME, PRIMARY KEY (id),\
-  		FOREIGN KEY (user_id) REFERENCES users(id))",
-  		"CREATE TABLE clients (id int NOT NULL AUTO_INCREMENT, user_id int NOT NULL,\
-  		name varchar(255) NOT NULL, company_name varchar(255) NOT NULL, email varchar(50),\
-  		phone_number varchar(15), alt_phone_number varchar(15), company_pan_number varchar(50),\
-  		created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id),\
-  		FOREIGN KEY (user_id) REFERENCES users(id))",
-  		"CREATE TABLE docs (id int NOT NULL AUTO_INCREMENT, user_id int NOT NULL, url varchar(255) NOT NULL\
-  		, created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id))"];
+  		query = [
+  		"CREATE TABLE organisations (id int NOT NULL AUTO_INCREMENT, org_name varchar(255) NOT NULL,\
+  		established_on DATETIME NOT NULL, about varchar(255) NOT NULL, created_at DATETIME, \
+      deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id))",
+  		"CREATE TABLE researcher (id int NOT NULL AUTO_INCREMENT, researcher_name varchar(255) NOT NULL, \
+      email varchar(50) NOT NULL, phone_number varchar(15), nationality varchar(50), state varchar(50), \
+      city varchar(50), organisation varchar(50), gender varchar(10), password varchar(255) NOT NULL,\
+      created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id))",
+  		"CREATE TABLE proposals (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
+      org_id int NOT NULL, doc varchar(225) NOT NULL, researcher_id int NOT NULL, \
+  		created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), \
+      FOREIGN KEY (org_id) REFERENCES organisations(id), FOREIGN KEY (researcher_id) REFERENCES researcher(id))",
+      "CREATE TABLE news (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
+  		details varchar(255) NOT NULL, org_id int NOT NULL, created_at DATETIME, \
+      deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), FOREIGN KEY (org_id) REFERENCES organisations(id))",
+      "CREATE TABLE updates (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
+  		details varchar(255) NOT NULL, org_id int NOT NULL, created_at DATETIME, \
+      deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), FOREIGN KEY (org_id) REFERENCES organisations(id))",
+      "CREATE TABLE notifications (id int NOT NULL AUTO_INCREMENT, pro_id int NOT NULL,\
+      not_name varchar(255) NOT NULL, not_read int NOT NULL, org_id int NOT NULL, created_at DATETIME, \
+      deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY(id), FOREIGN KEY (pro_id) REFERENCES proposals(id))"
+    ];
   		for(var i in query) {
   			executeQuery(connection, query, i);
   		}
