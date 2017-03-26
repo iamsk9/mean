@@ -15,8 +15,14 @@ var DashboardController = require('./controllers/dashBoardController.js');
 */
 var ClientController = require('./researcher/controllers/clientController.js');
 
+var OrganisationsController = require('./researcher/controllers/organisationsController.js');
+
+var ProposalsController = require('./researcher/controllers/proposalsController.js');
+
 module.exports = function(app, apiRoutes, blobService) {
-  apiRoutes.post('/client', ClientController.addClient);
+  apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
+
+  apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
 /*
 	app.get('/', IndexController.handle);
 

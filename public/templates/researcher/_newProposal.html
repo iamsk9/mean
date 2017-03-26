@@ -42,7 +42,34 @@
          New Proposal
        </div>
        <div class="panel-body">
-         New Proposal Page
+         <md-content layout-padding>
+           <form name="newProposalForm">
+             <div layout="row">
+                <md-input-container flex="50">
+                  <label>Proposal Name</label>
+                  <input required name="proposalname" ng-model="proposal.name"/>
+                  <div ng-messages="proposal.name.$error">
+                    <div ng-message="required">This is required.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                  <label>Select Organisations</label>
+                  <md-select name="org" ng-model="proposal.org_id" required>
+                    <md-option ng-repeat = "organisation in organisations" value="{{organisation.id}}">
+      							         {{organisation.org_name}}
+      							</md-option>
+                  </md-select>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                  <input type = "file" file-model = "proposal.myFile"/>
+              </div>
+              <center>
+                <md-button class="md-raised md-primary" ng-click="submitProposal()">Submit Proposal</md-button>
+              </center>
+           </form>
+         </md-content>
        </div>
      </div>
    </div>
