@@ -1,26 +1,14 @@
-
-myapp.filter('showDate', function() {
-    return function(input) {
-        return moment(input).format("DD-MM-YYYY");
-    }
-});
-
-myapp.directive('dateFix', function() {
-    return {
-        require: 'ngModel',
-        link: function(scope, elem, attrs, ngModel) {
-            var toView = function(val) {
-                return val;
-            };
-
-            var toModel = function(val) {
-                var offset = moment(val).utcOffset();
-                var date = new Date(moment(val).add(offset, 'm'));
-                return date;
-            };
-
-            ngModel.$formatters.unshift(toView);
-            ngModel.$parsers.unshift(toModel);
-        }
-    };
-});
+myapp.directive('fileModel', ['$parse', function ($parse) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+    var model = $parse(attrs.fileModel);
+    var modelSetter = model.assign;
+    element.bind('change', function(){
+      scope.$apply(function(){
+      modelSetter(scope, element[0].files[0]);
+    });
+  });
+ }
+};
+}]);
