@@ -19,10 +19,14 @@ var OrganisationsController = require('./researcher/controllers/organisationsCon
 
 var ProposalsController = require('./researcher/controllers/proposalsController.js');
 
+var orgNotificationsController = require('./org/controllers/orgNotificationsController.js');
+
 module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 
   apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
+
+  apiRoutes.get('/orgNotifications', orgNotificationsController.getNotifications);
 /*
 	app.get('/', IndexController.handle);
 

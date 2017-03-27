@@ -63,6 +63,30 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					templateUrl: researcherpath + '/_organizations.html',
 					controller: 'OrganizationsController'
 			})
+			.when('/organisationDashboardPage', {
+					templateUrl: orgpath + '/_dashboard.html',
+					controller: 'DashboardController'
+			})
+			.when('/orgNews', {
+					templateUrl: orgpath + '/_news.html',
+					controller: 'NewsController'
+			})
+			.when('/orgNotifications', {
+					templateUrl: orgpath + '/_notifications.html',
+					controller: 'NotificationsController'
+			})
+			.when('/orgProfile', {
+					templateUrl: orgpath + '/_profile.html',
+					controller: 'ProfileController'
+			})
+			.when('/orgUpdates', {
+					templateUrl: orgpath + '/_updates.html',
+					controller: 'UpdatesController'
+			})
+			.when('/orgOrganizations', {
+					templateUrl: orgpath + '/_organizations.html',
+					controller: 'OrganizationsController'
+			})
 });
 
 myapp.run(function($rootScope, $mdToast, MyService, $mdSidenav,$mdDialog){
