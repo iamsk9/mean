@@ -1,7 +1,7 @@
-myapp.controller('researcherRegistrationController', function($scope, $mdToast, ResearcherService, $location) {
+myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, ResearcherService, $location) {
 
-  $scope.registerResearcher = function() {
-			ResearcherService.registerResearcher($scope.researcher).then(function(){
+  $scope.registerResearcher = function() {     
+			ResearcherService.registerResearcher($scope.researher).then(function(){
 				$scope.registerResearcher = false;
 				$mdToast.show($mdToast.simple()
 					.textContent("Researcher successfully Registered")

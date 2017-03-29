@@ -17,7 +17,7 @@ var SALT_WORK_FACTOR = 19204;
 exports.registerResearcher = function(req) {
 	var registerResearcherDeferred = q.defer();
 	var conn;
-	var register = "INSERT INTO `researcher`(`researcher_name`, `email`, `phone_number`, `nationality`, `state`, `city`, `organisation`, `gender`, `password`, `created_at`, `deleted_at`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	var register = "INSERT INTO researcher(researcher_name, email, phone_number, nationality, state, city, organisation, gender, password, created_at, deleted_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	db.getConnection().then(function(connection) {
 	    console.log("Inside");
