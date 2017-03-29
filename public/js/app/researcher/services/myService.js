@@ -13,5 +13,18 @@ myapp.factory('MyService', function(Restangular, $q){
 			});
 			return organisationsDefer.promise;
 		}
+        	goToResearcherRegistration: function() {
+			var organisationsDefer = $q.defer();
+			Restangular.one('/registerResearcher').get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					organisationsDefer.resolve(data.data);
+				} else {
+					organisationsDefer.reject();
+				}
+			}, function(err){
+				organisationsDefer.reject(err);
+			});
+			return organisationsDefer.promise;
+		}		
   }
 });

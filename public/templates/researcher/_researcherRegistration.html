@@ -116,14 +116,13 @@ input::-webkit-input-placeholder {
 
 
         <div class="main-login main-center">
-          <form class="form-horizontal" method="post" action="#">
-
+        <form name="registerResearcher">
             <div class="form-group">
               <label for="name" class="cols-sm-2 control-label">Name</label>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Your Name"/>
+                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Your Name" ng-model="researher.name"/>
                 </div>
               </div>
             </div>
@@ -133,7 +132,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email"/>
+                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email" ng-model="researher.email"/>
                 </div>
               </div>
             </div>
@@ -143,7 +142,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-mobile aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="mobile" id="mobile"  placeholder="Your Mobile"/>
+                  <input type="text" class="form-control" name="mobile" id="mobile"  placeholder="Your Mobile" ng-model="researher.mobile"/>
                 </div>
               </div>
             </div>
@@ -153,7 +152,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-                  <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality">
+                  <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality" ng-model="researher.nationality">
                                     <option>-select-</option>
                                     <option>India</option>
                                     <option>Singapore</option>
@@ -169,7 +168,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-                  <select class="form-control" name="state" id="state"  placeholder="Please select your state">
+                  <select class="form-control" name="state" id="state"  placeholder="Please select your state" ng-model="researher.state">
                                     <option>-select-</option>
                                     <option>Andhra Pradesh</option>
                                     <option>Tamil Nadu</option>
@@ -185,7 +184,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="city" id="city"  placeholder="Your City"/>
+                  <input type="text" class="form-control" name="city" id="city"  placeholder="Your City" ng-model="researher.city"/>
                 </div>
               </div>
             </div>
@@ -195,7 +194,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="organisation" id="organisation"  placeholder="Your organisation"/>
+                  <input type="text" class="form-control" name="organisation" id="organisation"  placeholder="Your organisation" ng-model="researher.organisation" />
                 </div>
               </div>
             </div>
@@ -205,7 +204,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-female" aria-hidden="true"></i></span>
-                  <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender">
+                  <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender" ng-model="researher.gender">
                                     <option>-select-</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -219,7 +218,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Choose User Name"/>
+                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Choose User Name" ng-model="researher.username"/>
                 </div>
               </div>
             </div>
@@ -228,7 +227,7 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="Password" id="Password"  placeholder="Choose Password"/>
+                                    <input type="text" class="form-control" name="Password" id="Password"  placeholder="Choose Password" ng-model="researher.password"/>
                 </div>
               </div>
             </div>
@@ -237,13 +236,15 @@ input::-webkit-input-placeholder {
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password"/>
+                                    <input type="text" class="form-control" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password" ng-model="researher.confirmpassword"/>
                 </div>
               </div>
             </div>
 
             <div class="form-group ">
-              <button type="button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+             <center>
+                <md-button class="md-raised md-primary" ng-click="registerResearcher()">Submit</md-button>
+              </center>
             </div>
           </form>
         </div>
