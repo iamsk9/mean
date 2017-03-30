@@ -1,255 +1,102 @@
-<html lang="en">
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
-    <!-- Website CSS style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-    <!-- Website Font style -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-  </head>
-  <style type="text/css">
-
-/*
- * General styles
- */
-
-
-
-.main{
-  margin-top: 70px;
-
-}
-
-h1.title {
-  font-size: 50px;
-  font-family: 'Passion One', cursive;
-  font-weight: 400;
-}
-
-hr{
-  width: 10%;
-  color: #fff;
-}
-
-.form-group{
-  margin-bottom: 15px;
-}
-
-label{
-  margin-bottom: 14px;
-}
-
-input,
-input::-webkit-input-placeholder {
-    font-size: 9px;
-    padding-top: 3px;
-}
-
-.main-login{
-
-  background-color: #99ccff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
-}
-
-.main-center{
-  margin-top: 30px;
-  margin: 0 auto;
-  max-width: 500px;
-    padding: 40px 40px;
-
-}
-
-.login-button{
-  margin-top: 3px;
-}
-
-.login-register{
-  font-size: 8px;
-  text-align: center;
-}
-.registercontainer{
-  width: 100%;
-  height: 100%;
-  position: relative;
-  text-align: center;
-  background:url('https://cdn.pixabay.com/photo/2017/02/23/09/26/tulips-2091615_960_720.jpg');
-  background-attachment:fixed;
-  background-size:cover;
-}
-  </style>
-
-    <nav class="navbar header-bottom">
-      <div class="container">
-        <center>
-          <ul class="nav navbar-nav">
-            <li><a><span class="glyphicon glyphicon glyphicon-user"></span>  Researcher Login</a></li>
-            <li><a ng-click="goToOrgLogin()"><span class="glyphicon glyphicon glyphicon-globe"></span>  Organization Login</a></li>
-            <li><a ng-click="goToResearcherRegistration()"><span class="glyphicon glyphicon glyphicon-education"></span>  Researcher Registration</a></li>
-          </ul>
-        </center>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a>FAQs</a></li>
-          <li><a>Contact Us</a></li>
-        </ul>
-      </div>
-    </nav>
-
-  <body>
-  <div class="registercontainer">
-  <div class="panel-title text-center" >
-                    <h2 class="title" style="color: #532862"><b>Registration</b></h2>
-                    <hr />
-                </div>
-
-
-        <div class="main-login main-center">
-          <form name="researherRegistrationForm">
-
-            <div class="form-group">
-              <label for="name" class="cols-sm-2 control-label">Name</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" placeholder="Your Name" ng-model="researher.name"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="cols-sm-2 control-label">Email</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email" ng-model="researher.email"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="mobile" class="cols-sm-2 control-label required">Mobile</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-mobile aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="mobile" id="mobile"  placeholder="Your Mobile" ng-model="researher.mobile"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="nationality" class="cols-sm-2 control-label">Nationality</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-                  <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality" ng-model="researher.nationality">
-                                    <option>-select-</option>
-                                    <option>India</option>
-                                    <option>Singapore</option>
-                                    <option>Malaysia</option>
-                                    <option>USA</option>
+<nav class="navbar header-bottom">
+  <div class="container">
+    <center>
+      <ul class="nav navbar-nav">
+        <li><a ng-click="goToResearcherLogin()"><span class="glyphicon glyphicon glyphicon-user"></span>  Researcher Login</a></li>
+        <li><a ng-click="goToOrgLogin()"><span class="glyphicon glyphicon glyphicon-globe"></span>  Organization Login</a></li>
+        <li><a ng-click="goToResearcherRegistration()"><span class="glyphicon glyphicon glyphicon-education"></span>  Researcher Registration</a></li>
+      </ul>
+    </center>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>FAQs</a></li>
+      <li><a>Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="register_container">
+           <header>
+               <h1>Researcher Registration</h1>
+           </header>
+           <section>
+               <div id="register_container_demo" >
+                   <a class="hiddenanchor" id="toregister"></a>
+                   <div id="register_wrapper">
+                       <div id="register" class="animate form">
+                           <form  action="mysuperscript.php" autocomplete="on">
+                               <h1> Sign up </h1>
+                               <p>
+                                   <label for="usernamesignup" class="uname" >Your Name</label>
+                                   <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="MyName" />
+                               </p>
+                               <p>
+                                   <label for="emailsignup" class="youmail" > Your email</label>
+                                   <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
+                               </p>
+                               <p>
+                                   <label for="mobileno" class="youmobile" > Your Mobile</label>
+                                   <input id="mobileno" name="mobileno" required="required" type="tel" placeholder="Mobile Number"/>
+                               </p>
+                               <p>
+                                   <label for="nationality" class="younationality" > Your Nationality</label>
+                                   <div class="input-group">
+                                     <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality">
+                                       <option>-select-</option>
+                                       <option>India</option>
+                                       <option>Singapore</option>
+                                       <option>Malaysia</option>
+                                       <option>USA</option>
                                     </select>
-                </div>
-              </div>
-            </div>
-
-             <div class="form-group">
-              <label for="nationality" class="cols-sm-2 control-label">State</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-                  <select class="form-control" name="state" id="state"  placeholder="Please select your state" ng-model="researher.state">
-                                    <option>-select-</option>
-                                    <option>Andhra Pradesh</option>
-                                    <option>Tamil Nadu</option>
-                                    <option>Orissa</option>
-                                    <option>Rajastan</option>
-                                    </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="country" class="cols-sm-2 control-label">City of Residence</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="city" id="city"  placeholder="Your City" ng-model="researher.city"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="country" class="cols-sm-2 control-label">Organisation</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="organisation" id="organisation"  placeholder="Your organisation" ng-model="researher.organisation" />
-                </div>
-              </div>
-            </div>
-
-               <div class="form-group">
-              <label for="nationality" class="cols-sm-2 control-label">Gender</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-female" aria-hidden="true"></i></span>
-                  <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender" ng-model="researher.gender">
-                                    <option>-select-</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    </select>
-                </div>
-              </div>
-            </div>
-
-             <div class="form-group">
-              <label for="name" class="cols-sm-2 control-label">Choose User Name</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Choose User Name" ng-model="researher.username"/>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="Password" class="cols-sm-2 control-label">Choose Password</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="Password" id="Password"  placeholder="Choose Password" ng-model="researher.password"/>
-                </div>
-              </div>
-            </div>
-             <div class="form-group">
-              <label for="confirmPassword" class="cols-sm-2 control-label">Confirm Password</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="confirmPassword" id="confirmPassword"  placeholder="Confirm Password" ng-model="researher.confirmpassword"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group ">
-              <button type="button" class="btn btn-primary btn-lg btn-block login-button" ng-click="registerResearcher()">Submit</button>
-            </div>
-          </form>
-        </div>
-
-
-    </div>
-  </body>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-</html>
+                                  </div>
+                               </p>
+                               <p>
+                                   <label for="state" class="youstate" > Your State</label>
+                                   <div class="input-group">
+                                     <select class="form-control" name="state" id="state"  placeholder="Please select your state">
+                                       <option>-select-</option>
+                                       <option>Andhra Pradesh</option>
+                                       <option>Tamil Nadu</option>
+                                       <option>Orissa</option>
+                                       <option>Rajastan</option>
+                                   </select>
+                                 </div>
+                               </p>
+                               <p>
+                                   <label for="city" class="youcity" > City Of Residence</label>
+                                   <input id="city" name="city" required="required" type="text" placeholder="MyResidence"/>
+                               </p>
+                               <p>
+                                   <label for="organization" class="youorg" > Your Organization</label>
+                                   <input id="organization" name="organization" required="required" type="text" placeholder="MyOrganization"/>
+                               </p>
+                               <p>
+                                   <label for="gender" class="yougen" > Your Gender</label>
+                                   <div class="input-group">
+                                     <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender">
+                                       <option>-select-</option>
+                                       <option>Male</option>
+                                       <option>Female</option>
+                                     </select>
+                                   </div>
+                               </p>
+                               <p>
+                                   <label for="passwordsignup" class="youpasswd">Your password </label>
+                                   <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                               </p>
+                               <p>
+                                   <label for="passwordsignup_confirm" class="youpasswd" >Please confirm your password </label>
+                                   <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                               </p>
+                               <p class="signin button">
+                                 <input type="submit" value="Sign up"/>
+                               </p>
+                               <p class="change_link">
+                                 Already a member ?
+                                 <a href="#tologin" class="to_register"> Go and log in </a>
+                               </p>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </section>
+       </div>
