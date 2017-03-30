@@ -12,26 +12,52 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				organisationsDefer.reject(err);
 			});
 			return organisationsDefer.promise;
-		},
-		submitProposal : function(proposalDetails, id) {
-			var submitProposalDefer = $q.defer();
-			console.log(proposalDetails);
+		},	
+		registerResearcher : function(researcherDetails) {
+			var registerResearcherDefer = $q.defer();
+			console.log(researcherDetails);
 			var payload = {
-				name : proposalDetails.name,
-				org_id : parseInt(proposalDetails.org_id),
-				doc : proposalDetails.myFile.name,
-				researcher_id: id
+				name : researcherDetails.name,
+				email : researcherDetails.email,
+				mobile : researcherDetails.mobile,
+				nationality : researcherDetails.nationality,
+				state : researcherDetails.state,
+				city : researcherDetails.city,
+				organization : researcherDetails.organization,
+				gender : researcherDetails.gender,
+				username : researcherDetails.username,
+				password : researcherDetails.password,				
 			}
-			Restangular.one('/submitProposal').post('', payload).then(function(data) {
+			Restangular.one('/registerResearcher').post('', payload).then(function(data) {
 				if(data.returnCode == "SUCCESS") {
-					submitProposalDefer.resolve();
+					registerResearcherDefer.resolve();
 				} else {
-					submitProposalDefer.reject({errorCode : data.errorCode});
+					registerResearcherDefer.reject({errorCode : data.errorCode});
 				}
 			}, function(err) {
-				submitProposalDefer.reject(err);
+				registerResearcherDefer.reject(err);
 			});
-			return submitProposalDefer.promise;
-		}
+			return registerResearcherDefer.promise;
+		}		
+		// submitProposal : function(proposalDetails, id) {
+		// 	var submitProposalDefer = $q.defer();
+		// 	console.log(proposalDetails);
+		// 	var payload = {
+		// 		name : proposalDetails.name,
+		// 		org_id : parseInt(proposalDetails.org_id),
+		// 		doc : proposalDetails.myFile.name,
+		// 		researcher_id: id
+		// 	}
+		// 	Restangular.one('/submitProposal').post('', payload).then(function(data) {
+		// 		if(data.returnCode == "SUCCESS") {
+		// 			submitProposalDefer.resolve();
+		// 		} else {
+		// 			submitProposalDefer.reject({errorCode : data.errorCode});
+		// 		}
+		// 	}, function(err) {
+		// 		submitProposalDefer.reject(err);
+		// 	});
+		// 	return submitProposalDefer.promise;
+		// }
   }
 });
