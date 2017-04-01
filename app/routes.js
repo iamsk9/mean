@@ -28,9 +28,13 @@ var orgNotificationsController = require('./org/controllers/orgNotificationsCont
 module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/authenticate', ResearcherController.authenticate);
 
+  apiRoutes.post('/orgAuthenticate', orgNotificationsController.authenticate);
+
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 
   apiRoutes.post('/addNews', orgNotificationsController.addNews);
+
+  apiRoutes.post('/addOrg', orgNotificationsController.addOrg);
 
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
 

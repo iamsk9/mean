@@ -23,6 +23,14 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 					templateUrl: researcherpath + '/_researcherLogin.html',
 					controller: 'ResearcherLoginController'
 			})
+			.when('/adminPage', {
+					templateUrl: orgpath + '/_adminLogin.html',
+					controller: 'AdminLoginController'
+			})
+			.when('/adminDashboard', {
+					templateUrl: orgpath + '/_adminDashboard.html',
+					controller: 'AdminDashboardController'
+			})
 			.when('/researcherRegistration', {
 					templateUrl: researcherpath + '/_researcherRegistration.html',
 					controller: 'ResearcherRegistrationController'

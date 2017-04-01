@@ -1,0 +1,48 @@
+<nav class="navbar header-bottom">
+  <div class="container">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>Profile</a></li>
+      <li><a ng-click="goToHomePage()">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="col-md-12 content">
+    <div class="panel panel-default">
+       <div class="panel-heading">
+         Add New Organisation
+       </div>
+       <div class="panel-body">
+         <form name = "orgForm">
+           <div layout = "column" layout-align = "center center">
+             <md-input-container style = "width : 300px" class = "md-block">
+               <label>Organisation Name</label>
+               <input required ng-model="orgForm.org_name"/>
+               <div ng-messages="orgForm.org_name.$error">
+                 <div ng-message="required">This is required.</div>
+               </div>
+             </md-input-container>
+             <md-input-container style = "width : 300px" class = "md-block">
+               <label>Organisation Username</label>
+               <input required ng-model="orgForm.username"/>
+               <div ng-messages="orgForm.username.$error">
+                 <div ng-message="required">This is required.</div>
+               </div>
+             </md-input-container>
+             <md-input-container style = "width : 300px" class = "md-block">
+               <label>Organisation Password</label>
+               <input required ng-model="orgForm.password" type="password"/>
+               <div ng-messages="orgForm.password.$error">
+                 <div ng-message="required">This is required.</div>
+               </div>
+             </md-input-container>
+             <md-datepicker style = "width : 300px" ng-model="orgForm.established_on" md-placeholder="Enter date"></md-datepicker>
+             <div layout = "row" layout-align = "center center">
+   						<md-button class="md-raised md-primary" style = "font-size : 1.3em"
+   						ng-click = "addNewOrg()">ADD Organisation</md-button>
+   		       </div>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+</div>

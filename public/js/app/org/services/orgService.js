@@ -24,7 +24,6 @@ myapp.factory('OrgService', function(Restangular, $q){
 				max_fund : newsDetails.max_fund,
 				last_date : newsDetails.last_date
 		 	}
-			console.log("play"+" "+payload);
 		 	Restangular.one('/addNews').post('', payload).then(function(data) {
 		 		if(data.returnCode == "SUCCESS") {
 		 			addNewsDefer.resolve();
@@ -35,6 +34,33 @@ myapp.factory('OrgService', function(Restangular, $q){
 		 		addNewsDefer.reject(err);
 		 	});
 		 	return addNewsDefer.promise;
-		 }
+		 },
+ 		 addOrg : function(orgDetails) {
+ 		 	var addOrgDefer = $q.defer();
+ 		 	var payload = orgDetails;
+ 		 	Restangular.one('/addOrg').post('', payload).then(function(data) {
+ 		 		if(data.returnCode == "SUCCESS") {
+ 		 			addOrgDefer.resolve();
+ 		 		} else {
+ 		 			addOrgDefer.reject({errorCode : data.errorCode});
+ 		 		}
+ 		 	}, function(err) {
+ 		 		addOrgDefer.reject(err);
+ 		 	});
+ 		 	return addOrgDefer.promise;
+		},
+		signIn : function(login) {
+			var signInDefer = $q.defer();
+			Restangular.one('/orgAuthenticate').post('', login).then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					signInDefer.resolve(data);
+				} else {
+					signInDefer.reject(data);
+				}
+			}, function(err) {
+				signInDefer.reject(err);
+			});
+			return signInDefer.promise;
+		}
   }
 });
