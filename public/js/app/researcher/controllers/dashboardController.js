@@ -3,8 +3,9 @@ myapp.controller('ResearcherDashboardController', function($scope, $rootScope, $
   function getDashboardDetails() {
     console.log($rootScope.researcherDetails);
     ResearcherService.getDashboardDetails($rootScope.researcherDetails).then(function(data){
-  		console.log(data.noofproposals);
+  		console.log(data);
       $scope.dashboardDetails.proposalsCount = data.noofproposals;
+      $scope.dashboardDetails.organisationsCount = data.nooforganizations;
   	}, function(err) {
   	});
   }
