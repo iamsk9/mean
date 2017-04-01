@@ -23,7 +23,7 @@ exports.registerResearcher = function(req) {
 	    console.log("Inside");
 		conn = connection;
 		return utils.runQuery(conn,register,[req.name, req.email, req.mobile, req.nationality,
-			 req.state,req.city,req.organisation,req.gender,req.username,req.password,
+			 req.state,req.city,req.organisation,req.gender,req.password,
 		moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')], true);	 
 	 }).then(function(){
 		 registerResearcherDeferred.resolve();
