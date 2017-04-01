@@ -10,6 +10,10 @@ myapp.controller('OrgLoginController', function($scope, $rootScope, $mdToast, Or
     $location.path('/organisationDashboardPage');
   }
 
+  $scope.goToAdminPage = function() {
+		$location.path('/adminPage');
+	}
+
   $scope.signin = function() {
     if($scope.login.username && $scope.login.username != "" && $scope.login.password &&
       $scope.login.password != "") {

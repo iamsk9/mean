@@ -25,7 +25,7 @@ exports.authenticate = function(req,res){
 
 
 exports.getNotifications = function(req,res){
-	orgNotificationsHelper.getNotifications().then(function(result){
+	orgNotificationsHelper.getNotifications(req.params.id).then(function(result){
 		res.json({returnCode : "SUCCESS", data : result, errorCode : null});
 	}, function(err){
 		console.log(err);

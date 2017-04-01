@@ -1,6 +1,6 @@
-myapp.controller('NotificationsController', function($scope, $mdToast, OrgService, $location, $mdDialog) {
+myapp.controller('NotificationsController', function($scope, $rootScope, $mdToast, OrgService, $location, $mdDialog) {
   function getNotifications() {
-    var orgId = 2;
+    var orgId = $rootScope.orgDetails.id;
     OrgService.getNotifications(orgId).then(function(notifications){
       console.log(notifications);
   		$scope.notifications = notifications;
