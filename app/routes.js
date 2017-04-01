@@ -30,11 +30,15 @@ module.exports = function(app, apiRoutes, blobService) {
 
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 
+  apiRoutes.post('/addNews', orgNotificationsController.addNews);
+
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
 
   apiRoutes.get('/dashboard', DashboardController.getDashboardData);
 
   apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
+
+  apiRoutes.get('/getNews', ResearcherController.getNews);
 
   apiRoutes.get('/orgNotifications', orgNotificationsController.getNotifications);
 /*

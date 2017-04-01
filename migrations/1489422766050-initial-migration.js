@@ -19,7 +19,7 @@ exports.up = function(next) {
   		var query = [];
   		query = [
   		"CREATE TABLE organisations (id int NOT NULL AUTO_INCREMENT, org_name varchar(255) NOT NULL,\
-  		established_on DATETIME NOT NULL, about varchar(255) NOT NULL, created_at DATETIME, \
+  		established_on DATETIME NOT NULL, username varchar(20), password varchar(255), about varchar(255) NOT NULL, created_at DATETIME, \
       deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id))",
   		"CREATE TABLE researcher (id int NOT NULL AUTO_INCREMENT, researcher_name varchar(255) NOT NULL, \
       email varchar(50) NOT NULL, phone_number varchar(15), nationality varchar(50), state varchar(50), \
@@ -30,7 +30,7 @@ exports.up = function(next) {
   		created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), \
       FOREIGN KEY (org_id) REFERENCES organisations(id), FOREIGN KEY (researcher_id) REFERENCES researcher(id))",
       "CREATE TABLE news (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
-  		details varchar(255) NOT NULL, org_id int NOT NULL, created_at DATETIME, \
+  		details varchar(255) NOT NULL, org_id int NOT NULL, max_fund int, min_fund int, last_date DATETIME, created_at DATETIME, \
       deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), FOREIGN KEY (org_id) REFERENCES organisations(id))",
       "CREATE TABLE updates (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
   		details varchar(255) NOT NULL, org_id int NOT NULL, created_at DATETIME, \
