@@ -1,16 +1,31 @@
-myapp.controller('ResearcherLoginController', function($scope, $mdToast, MyService, $location) {
-/*
-	$scope.clock = "loading clock..."; // initialise the time variable
-    $scope.tickInterval = 1000 //ms
+myapp.controller('ResearcherLoginController', function($scope, $rootScope, $mdToast, ResearcherService, $location) {
 
-    var tick = function() {
-        $scope.clock = Date.now() // get the current time
-        $timeout(tick, $scope.tickInterval); // reset the timer
-    }
+		$scope.signin = function() {
+			if($scope.login.email && $scope.login.email != "" && $scope.login.password &&
+				$scope.login.password != "") {
+				ResearcherService.signIn($scope.login).then(function(data){
+					console.log(data.data.email);
+					$rootScope.researcherDetails = data.data;
+					console.log($rootScope.researcherDetails);
+					$location.path('/researcherDashboardPage');
+				}, function(err){
+					if(err.errorCode == 1010) {
+						$scope.loginForm.email.$error.notRegistered = true;
+						$scope.loginForm.email.$invalid = true;
+					} else if(err.errorCode == 1011) {
+						$scope.loginForm.password.$error.incorrect = true;
+						$scope.loginForm.password.$invalid = true;
+					} else if(err.errorCode == 1029) {
+						$scope.loginForm.password.$error.clientBlocked = true;
+						$scope.loginForm.password.$invalid = true;
+					} else if(err.errorCode == 1014) {
+						$scope.loginForm.password.$error.serverError = true;
+						$scope.loginForm.password.$invalid = true;
+					}
+				});
+			}
+		}
 
-    // Start the timer
-    $timeout(tick, $scope.tickInterval);
-**/
 		$scope.goToOrgLogin = function() {
 			$location.path('/orgLogin');
 		}

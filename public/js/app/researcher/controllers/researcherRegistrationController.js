@@ -1,7 +1,7 @@
 myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, ResearcherService, $location) {
 
   $scope.registerResearcher = function() {
-    console.log($scope.researcher); 
+    console.log($scope.researcher);
 			ResearcherService.registerResearcher($scope.researcher).then(function(){
 				$scope.registerResearcher = false;
 				$mdToast.show($mdToast.simple()
@@ -9,6 +9,7 @@ myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, 
 					.position("top right")
 					.hideDelay(5000));
 				$scope.researcher = {};
+        $location.path('/researcherLogin');
 			}, function(err) {
 
 				// if(err.errorCode == 1015) {

@@ -26,6 +26,8 @@ var ProposalsController = require('./researcher/controllers/proposalsController.
 var orgNotificationsController = require('./org/controllers/orgNotificationsController.js');
 
 module.exports = function(app, apiRoutes, blobService) {
+  apiRoutes.post('/authenticate', ResearcherController.authenticate);
+
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);

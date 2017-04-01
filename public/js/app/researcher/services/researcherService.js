@@ -53,6 +53,19 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 			});
 			return registerResearcherDefer.promise;
 		},
+		signIn : function(login) {
+			var signInDefer = $q.defer();
+			Restangular.one('/authenticate').post('', login).then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					signInDefer.resolve(data);
+				} else {
+					signInDefer.reject(data);
+				}
+			}, function(err) {
+				signInDefer.reject(err);
+			});
+			return signInDefer.promise;
+		}
 		// submitProposal : function(proposalDetails, id) {
 		// 	var submitProposalDefer = $q.defer();
 		// 	console.log(proposalDetails);
