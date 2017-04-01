@@ -13,6 +13,19 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 			});
 			return organisationsDefer.promise;
 		},
+		getDashboardDetails: function(details) {
+			var dashboardDefer = $q.defer();
+			Restangular.one('/dashboardDetails/'+details.id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					dashboardDefer.resolve(data.data);
+				} else {
+					dashboardDefer.reject();
+				}
+			}, function(err){
+				dashboardDefer.reject(err);
+			});
+			return dashboardDefer.promise;
+		},
 		getNews: function() {
 			var newsDefer = $q.defer();
 			Restangular.one('/getNews').get().then(function(data) {
@@ -25,20 +38,6 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				newsDefer.reject(err);
 			});
 			return newsDefer.promise;
-		},
-		getDashboardData : function() {
-			console.log("hello");
-			var dashboardDefer = $q.defer();
-			Restangular.one('/dashboard').get().then(function(data) {
-				if(data.returnCode == "SUCCESS") {
-					dashboardDefer.resolve(data.data);
-				} else {
-					dashboardDefer.reject();
-				}
-			}, function(err) {
-				dashboardDefer.reject(err);
-			});
-			return dashboardDefer.promise;
 		},
 		registerResearcher : function(researcherDetails) {
 			var registerResearcherDefer = $q.defer();

@@ -22,6 +22,12 @@ exports.authenticate = function(req,res){
 	});
 };
 
+exports.getDashboardDetails = function(req,res){
+	ResearcherHelper.getDashboardDetails(req.params.id).then(function(data) {
+		res.json({returnCode : "SUCCESS", data : data, errorCode : null});
+	}, handleError.bind(this));
+};
+
 exports.registerResearcher = function(req,res){
 	ResearcherHelper.registerResearcher(req.body).then(function(data) {
 		res.json({returnCode : "SUCCESS", data : data, errorCode : null});
