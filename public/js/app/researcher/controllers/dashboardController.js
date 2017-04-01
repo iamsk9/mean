@@ -1,14 +1,14 @@
 
-myapp.controller('ResearcherDashboardController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherDashboardController', function($scope, $mdToast, ResearcherService, $location) {
 
-  ResearcherService.getDashboardData().then(function(data){
+/*  ResearcherService.getDashboardData().then(function(data){
     $scope.dashboardDetails = data;
   }, function(err) {
     $mdToast.show($mdToast.simple()
     .textContent("Error in Fetching dashboard details.")
     .position("top right")
     .hideDelay(5000));
-  })
+  });*/
   $scope.goToDashboardResearcher = function()
   {
     $location.path('/researcherDashboardPage')
@@ -41,5 +41,10 @@ myapp.controller('ResearcherDashboardController', function($scope, $mdToast, MyS
   $scope.goToPreviousProposals = function()
   {
     $location.path('/previousProposals')
+  }
+  $scope.goToHomePage = function()
+  {
+    console.log("logout");
+    $location.path('/')
   }
 });
