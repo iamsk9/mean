@@ -1,15 +1,16 @@
 myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, ResearcherService, $location) {
 
-  $scope.registerResearcher = function() {     
-			ResearcherService.registerResearcher($scope.researher).then(function(){
+  $scope.registerResearcher = function() {
+    console.log($scope.researcher); 
+			ResearcherService.registerResearcher($scope.researcher).then(function(){
 				$scope.registerResearcher = false;
 				$mdToast.show($mdToast.simple()
 					.textContent("Researcher successfully Registered")
 					.position("top right")
 					.hideDelay(5000));
-				$scope.researcher = {};				
+				$scope.researcher = {};
 			}, function(err) {
-				
+
 				// if(err.errorCode == 1015) {
 				// 	$scope.addClientForm.email.$error.userExists = true;
 				// 	$scope.addClientForm.email.$invalid = true;
@@ -23,7 +24,7 @@ myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, 
 				// 	.hideDelay(5000));
 				// }
 			});
-		
+
 	}
 
   $scope.goToDashboard = function()

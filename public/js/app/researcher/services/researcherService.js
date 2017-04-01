@@ -12,7 +12,7 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				organisationsDefer.reject(err);
 			});
 			return organisationsDefer.promise;
-		},	
+		},
 		getDashboardData : function() {
 			console.log("hello");
 			var dashboardDefer = $q.defer();
@@ -37,10 +37,10 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				nationality : researcherDetails.nationality,
 				state : researcherDetails.state,
 				city : researcherDetails.city,
-				organization : researcherDetails.organization,
+				organisation : researcherDetails.organisation,
 				gender : researcherDetails.gender,
 				//username : researcherDetails.username,
-				password : researcherDetails.password,				
+				password : researcherDetails.password,
 			}
 			Restangular.one('/registerResearcher').post('', payload).then(function(data) {
 				if(data.returnCode == "SUCCESS") {
@@ -52,7 +52,7 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				registerResearcherDefer.reject(err);
 			});
 			return registerResearcherDefer.promise;
-		},		
+		},
 		// submitProposal : function(proposalDetails, id) {
 		// 	var submitProposalDefer = $q.defer();
 		// 	console.log(proposalDetails);
