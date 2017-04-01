@@ -24,4 +24,8 @@ myapp.controller('UpdatesController', function($scope, $mdToast, MyService, $loc
     {
       $location.path('/orgUpdates')
     }
+    $scope.goToHomePage = function()
+    {
+      $location.path('/')
+    }
 });

@@ -46,4 +46,8 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootSco
   {
     $location.path('/previousProposals')
   }
+  $scope.goToHomePage = function()
+  {
+    $location.path('/')
+  }
 });

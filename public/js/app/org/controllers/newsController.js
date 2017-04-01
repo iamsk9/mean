@@ -56,4 +56,8 @@ myapp.controller('NewsController', function($scope, $mdToast, OrgService, $locat
     {
       $location.path('/orgUpdates')
     }
+    $scope.goToHomePage = function()
+    {
+      $location.path('/')
+    }
 });

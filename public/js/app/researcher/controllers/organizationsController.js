@@ -32,4 +32,8 @@ myapp.controller('ResearcherOrganizationsController', function($scope, $mdToast,
   {
     $location.path('/previousProposals')
   }
+  $scope.goToHomePage = function()
+  {
+    $location.path('/')
+  }
 });

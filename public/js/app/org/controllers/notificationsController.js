@@ -66,4 +66,8 @@ myapp.controller('NotificationsController', function($scope, $mdToast, OrgServic
   {
     $location.path('/orgUpdates')
   }
+  $scope.goToHomePage = function()
+  {
+    $location.path('/')
+  }
 });
