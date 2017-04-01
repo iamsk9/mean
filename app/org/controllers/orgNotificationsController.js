@@ -9,6 +9,21 @@ function handleError(err) {
 	}
 }
 
+exports.authenticate = function(req,res){
+	orgNotificationsHelper.authenticateOrg(req).then(function(result){
+		res.json({returnCode : "SUCCESS", data : result, errorCode : null});
+	}, function(err){
+		console.log(err);
+		if(typeof(err.errorCode) != "undefined") {
+			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode})
+		} else {
+			console.log(err);
+			res.json({returnCode : "FAILURE", data : null, errorCode : 1014})
+		}
+	});
+};
+
+
 exports.getNotifications = function(req,res){
 	orgNotificationsHelper.getNotifications().then(function(result){
 		res.json({returnCode : "SUCCESS", data : result, errorCode : null});
@@ -25,6 +40,12 @@ exports.getNotifications = function(req,res){
 
 exports.addNews = function(req,res){
 	orgNotificationsHelper.addNews(req.body).then(function(data) {
+		res.json({returnCode : "SUCCESS", data : data, errorCode : null});
+	}, handleError.bind(this));
+};
+
+exports.addOrg = function(req,res){
+	orgNotificationsHelper.addOrg(req.body).then(function(data) {
 		res.json({returnCode : "SUCCESS", data : data, errorCode : null});
 	}, handleError.bind(this));
 };

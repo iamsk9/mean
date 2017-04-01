@@ -5,6 +5,7 @@
       <li><a ng-click="goToResearcherLogin()"><span class="glyphicon glyphicon glyphicon-user"></span>  Researcher Login</a></li>
 			<li><a><span class="glyphicon glyphicon glyphicon-globe"></span>  Organization Login</a></li>
 			<li><a ng-click="goToResearcherLogin()"><span class="glyphicon glyphicon glyphicon-education"></span>  Researcher Registration</a></li>
+      <li><a ng-click="goToAdminPage()"><span class="glyphicon glyphicon glyphicon-education"></span>  Admin Login</a></li>
 		</ul>
 		</center>
     <ul class="nav navbar-nav navbar-right">
@@ -15,7 +16,7 @@
 </nav>
 <div class="logincontainer">
   <header>
-    <h1>Organization Login Form</h1>
+    <h1>Admin Login Form</h1>
   </header>
   <section>
     <div id="container_demo" >
@@ -26,22 +27,18 @@
             <h1>Log in</h1>
             <p>
               <label for="username" class="uname" > Your email or username </label>
-              <input id="username" name="username" required="required" type="text" placeholder="myusername" ng-model="login.username"/>
+              <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
             </p>
             <p>
               <label for="password" class="youpasswd"> Your password </label>
-              <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" ng-model="login.password"/>
+              <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" />
             </p>
             <p class="keeplogin">
               <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
               <label for="loginkeeping">Keep me logged in</label>
             </p>
             <p class="login button">
-              <input type="submit" value="Login" ng-click="signin()"/>
-            </p>
-            <p class="change_link">
-              Not a member yet ?
-              <a href="#toregister" class="to_register">Join us</a>
+              <input type="submit" value="Login" ng-click="goToAdmindashboardPage()"/>
             </p>
           </form>
         </div>

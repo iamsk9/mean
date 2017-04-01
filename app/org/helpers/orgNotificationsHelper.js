@@ -2,9 +2,71 @@ var q = require('q');
 
 var moment = require('moment');
 
+var bcrypt = require('bcrypt-nodejs');
+
 var db = require('../../../mysqldb');
 
 var utils  = require('../../utils');
+
+var SALT_WORK_FACTOR = 19204;
+
+
+function generateHash(string) {
+	var hashDefer = q.defer();
+	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        if (err) hashDefer.reject(err);
+        // hash the password using our new salt
+        bcrypt.hash(string, salt, null, function(err, hash) {
+            if (err) hashDefer.reject(err);
+            // override the cleartext password with the hashed one
+            hashDefer.resolve(hash);
+        });
+    });
+    return hashDefer.promise;
+}
+
+
+function comparePassword(candidatePassword, dbPassword) {
+	var comparePasswordDefer = q.defer();
+	bcrypt.compare(candidatePassword, dbPassword, function(err, isMatch) {
+        if (err) comparePasswordDefer.reject(err);
+        comparePasswordDefer.resolve(isMatch);
+    });
+    return comparePasswordDefer.promise;
+}
+
+
+exports.authenticateOrg = function(req) {
+	var authenticateOrgDefer = q.defer();
+	db.getConnection().then(function(connection) {
+		var query = 'SELECT * FROM organisations WHERE username = ?';
+		connection.query(query, [req.body.username], function(err, results){
+			if(err) {
+				console.log(err);
+				authenticateOrgDefer.reject(err);
+				return;
+			}
+			if(results.length > 0) {
+				var user = results[0];
+				comparePassword(req.body.password, user.password).then(function(isMatch){
+					if(isMatch) {
+							var result = {
+								id : user.id, username : user.username
+							};
+							authenticateOrgDefer.resolve(result);
+					} else {
+						authenticateOrgDefer.reject({errorCode : 1011});
+					}
+					connection.release();
+				});
+			} else {
+				authenticateOrgDefer.reject({errorCode : 1010});
+			}
+		})
+	});
+	return authenticateOrgDefer.promise;
+}
+
 
 exports.getNotifications = function() {
 	var getNotificationsDefer = q.defer();
@@ -44,4 +106,36 @@ exports.addNews = function(req) {
 		addNewsDeferred.reject(err);
 	});
 	return addNewsDeferred.promise;
+}
+
+exports.addOrg = function(req) {
+
+	var addOrgDeferred = q.defer();
+	var conn;
+	var addOrgQuery = "INSERT INTO organisations(org_name, established_on, username, password, created_at, modified_at) VALUES (?,?,?,?,?,?)";
+
+	db.getConnection().then(function(connection) {
+			console.log("asdgasdg");
+			generateHash(req.password).then(function(hash){
+				console.log('inside hash');
+				connection.query(addOrgQuery, [req.org_name, req.established_on, req.username, hash,
+					 moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')]
+				, function(err, results) {
+					console.log("query");
+					if(err) {
+						addOrgDeferred.reject(err);
+						connection.release();
+						return;
+					}
+					addOrgDeferred.resolve();
+					connection.release();
+				});
+			}, function(err) {
+				connection.release();
+				addOrgDeferred.reject(err);
+			});
+	}, function(err) {
+		addOrgDeferred.reject(err);
+	});
+	return addOrgDeferred.promise;
 }

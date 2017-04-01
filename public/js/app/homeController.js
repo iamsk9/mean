@@ -15,6 +15,10 @@ myapp.controller('HomeController', function($scope, $mdToast, MyService, $timeou
 		$location.path('/researcherLogin');
 	}
 
+	$scope.goToAdminPage = function() {
+		$location.path('/adminPage');
+	}
+
 	$scope.goToOrgLogin = function() {
 		$location.path('/orgLogin');
 	}
