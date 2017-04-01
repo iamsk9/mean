@@ -1,8 +1,8 @@
 myapp.factory('OrgService', function(Restangular, $q){
 	return {
-		getNotifications: function() {
+		getNotifications: function(id) {
 			var notificationDefer = $q.defer();
-			Restangular.one('/orgNotifications').get().then(function(data) {
+			Restangular.one('/orgNotifications/'+id).get().then(function(data) {
 				if(data.returnCode == "SUCCESS") {
 					notificationDefer.resolve(data.data);
 				} else {

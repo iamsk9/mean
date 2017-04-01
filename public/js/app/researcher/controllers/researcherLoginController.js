@@ -36,7 +36,9 @@ myapp.controller('ResearcherLoginController', function($scope, $rootScope, $mdTo
 		$scope.goTodashboardPage = function() {
 			$location.path('/researcherDashboardPage');
 		}
-
+		$scope.goToAdminPage = function() {
+			$location.path('/adminPage');
+		}
 	$scope.addClient = function() {
 		console.log($scope.client.name);
 		console.log($scope.client.password);

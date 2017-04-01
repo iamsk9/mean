@@ -66,4 +66,7 @@ myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, 
   $scope.goToResearcherLogin = function() {
     $location.path('/researcherLogin');
   }
+  $scope.goToAdminPage = function() {
+		$location.path('/adminPage');
+	}
 });
