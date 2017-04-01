@@ -118,3 +118,25 @@ exports.getNews = function() {
 	});
 	return getNewsDefer.promise;
 }
+
+exports.getDashboardDetails = function(req) {
+	var getDashboardDeferred = q.defer();
+	var conn;
+	var results = {};
+	db.getConnection().then(function(connection) {
+		conn = connection;
+		var query = "SELECT max(id) as proID from proposals where deleted_at is NULL AND researcher_id = ?";
+		return utils.runQuery(conn, query, req);
+	}).then(function(result) {
+		results.noofproposals = result[0].proID;
+		 /*var query = "SELECT max(id) as proID from proposals where deleted_at is NULL";
+		 return utils.runQuery(conn, query, true)*/
+	 }).then(function(result) {
+		 
+	 }).then(function(){
+		 getDashboardDeferred.resolve(results);
+	 }).catch(function(err) {
+			 getDashboardDeferred.reject(err);
+	 });
+	 return getDashboardDeferred.promise;
+}

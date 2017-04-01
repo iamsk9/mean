@@ -38,7 +38,7 @@ module.exports = function(app, apiRoutes, blobService) {
 
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
 
-  apiRoutes.get('/dashboard', DashboardController.getDashboardData);
+  apiRoutes.get('/dashboardDetails/:id', ResearcherController.getDashboardDetails);
 
   apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
 
