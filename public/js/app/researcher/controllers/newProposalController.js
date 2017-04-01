@@ -70,4 +70,8 @@ myapp.controller('NewProposalController', function($scope, $mdToast, ResearcherS
   {
     $location.path('/previousProposals')
   }
+  $scope.goToHomePage = function()
+  {
+    $location.path('/')
+  }
 });

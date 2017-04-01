@@ -60,4 +60,10 @@ myapp.controller('ResearcherRegistrationController', function($scope, $mdToast, 
   {
     $location.path('/previousProposals')
   }
+  $scope.goToOrgLogin = function() {
+    $location.path('/orgLogin');
+  }
+  $scope.goToResearcherLogin = function() {
+    $location.path('/researcherLogin');
+  }
 });

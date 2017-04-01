@@ -31,4 +31,8 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, MyServic
   {
     $location.path('/previousProposals')
   }
+  $scope.goToHomePage = function()
+  {
+    $location.path('/')
+  }
 });
