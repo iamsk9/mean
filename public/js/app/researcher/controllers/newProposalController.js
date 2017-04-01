@@ -1,4 +1,4 @@
-myapp.controller('NewProposalController', function($scope, $mdToast, ResearcherService, $location) {
+myapp.controller('NewProposalController', function($scope, $mdToast, $rootScope, ResearcherService, $location) {
 
   function getOrganisations() {
     ResearcherService.getOrganisations().then(function(organisations){
@@ -23,7 +23,8 @@ myapp.controller('NewProposalController', function($scope, $mdToast, ResearcherS
         headers: {'Content-Type': undefined },
         transformRequest: angular.identity
     }).success().error();*/
-    var researcher_id = 1;
+    var researcher_id = $rootScope.researcherDetails.id;
+    console.log(researcher_id);
     ResearcherService.submitProposal($scope.proposal, researcher_id).then(function(){
       $mdToast.show($mdToast.simple()
         .textContent("Proposal is successfully Submitted")

@@ -6,7 +6,7 @@ myapp.controller('ResearcherNotificationsController', function($scope, $mdToast,
   }
   $scope.goToNotification = function()
   {
-    $location.path('/notifications')
+    $location.path('/news')
   }
   $scope.goToOrganisation = function()
   {

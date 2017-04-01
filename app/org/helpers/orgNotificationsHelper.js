@@ -18,3 +18,30 @@ exports.getNotifications = function() {
 	});
 	return getNotificationsDefer.promise;
 }
+
+exports.addNews = function(req) {
+	var addNewsDeferred = q.defer();
+	var conn;
+	var addNewsQuery = "INSERT INTO news(name, details, org_id, max_fund, min_fund, last_date, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?)";
+
+	db.getConnection().then(function(connection) {
+			console.log("asdgasdg");
+			console.log(req);
+			connection.query(addNewsQuery, [req.name, req.details, req.org_id, req.max_fund, req.min_fund,
+				 req.last_date, moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')]
+			, function(err, results) {
+				console.log("query");
+				if(err) {
+					addNewsDeferred.reject(err);
+					connection.release();
+					return;
+				}
+				addNewsDeferred.resolve();
+				connection.release();
+				console.log("News Added successfully");
+			});
+	}, function(err) {
+		addNewsDeferred.reject(err);
+	});
+	return addNewsDeferred.promise;
+}

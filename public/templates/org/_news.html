@@ -19,7 +19,7 @@
           <li><a href="#/orgNotifications" ng-click="goToNotification()"><span class="glyphicon glyphicon-alert"></span> Notifications</a></li>
           <li><a href="#/orgOrganizations" ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a href="#/orgProfile" ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-          <li class="active" ng-click="goToNews()"><a href="#/news"><span class="glyphicon glyphicon-cloud"></span> News</a></li>
+          <li class="active" ng-click="goToNews()"><a><span class="glyphicon glyphicon-cloud"></span> News</a></li>
           <li><a href="#/orgUpdates" ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
        </ul>
      </div>
@@ -46,40 +46,41 @@
          <h2>Add New News</h2>
        </div>
      </md-toolbar>
-     <md-dialog-content style="width:400px;max-height:810px;margin-top:20px;margin-left:auto;margin-right: auto">
+     <md-dialog-content style="width:450px;max-height:1300px;margin-top:20px;margin-left:auto;margin-right: auto">
        <form name = "newsForm">
          <div layout = "column" layout-align = "center center">
            <md-input-container style = "width : 300px" class = "md-block">
              <label>News Title</label>
-             <input type="text" required="" name = "newname" ng-model = "newsForm.newsname" required>
+             <input type="text" required="" name = "newname" ng-model = "theScope.newsForm.newsname" required>
              <div ng-messages = "newsForm.newsname.$error">
                <div ng-message = "required">This is required</div>
              </div>
            </md-input-container>
            <md-input-container style = "width : 300px" class = "md-block">
              <label>News Details</label>
-             <textarea ng-model="newsForm.news_details" md-maxlength="2000" rows="150"></textarea>
+             <textarea ng-model="theScope.newsForm.news_details" md-maxlength="2000" rows="150"></textarea>
              <div ng-messages = "newsForm.news_details.$error">
                <div ng-message = "required">This is required</div>
              </div>
            </md-input-container>
            <md-input-container style = "width : 300px" class = "md-block">
              <label>Minimum Funding</label>
-             <input type="number" required="" name = "min_fund" ng-model = "newsForm.min_fund" required>
+             <input type="number" name = "min_fund" ng-model = "theScope.newsForm.min_fund" required>
              <div ng-messages = "newsForm.min_fund.$error">
                <div ng-message = "required">This is required</div>
              </div>
            </md-input-container>
            <md-input-container style = "width : 300px" class = "md-block">
              <label>Maximum Funding</label>
-             <input type="number" required="" name = "max_fund" ng-model = "newsForm.max_fund" required>
+             <input type="number" name = "max_fund" ng-model = "theScope.newsForm.max_fund" required>
              <div ng-messages = "newsForm.max_fund.$error">
                <div ng-message = "required">This is required</div>
              </div>
            </md-input-container>
+           <md-datepicker style = "width : 300px" ng-model="theScope.newsForm.last_date" md-placeholder="Enter date"></md-datepicker>
            <div layout = "row" layout-align = "center center">
  						<md-button class="md-raised md-primary" style = "font-size : 1.3em"
- 						ng-click = "addNews()">ADD NEWS</md-button>
+ 						ng-click = "theScope.addNewsDB()">ADD NEWS</md-button>
  		       </div>
          </div>
        </form>

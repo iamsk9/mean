@@ -105,3 +105,16 @@ exports.registerResearcher = function(req) {
 	});
 	return registerResearcherDeferred.promise;
 }
+
+exports.getNews = function() {
+	var getNewsDefer = q.defer();
+	var query = "SELECT news.id, news.name, news.max_fund, news.min_fund, news.last_date, org.org_name from news news INNER JOIN organisations org ON news.org_id = org.id where news.deleted_at is NULL";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query);
+	}).then(function(results) {
+		getNewsDefer.resolve(results);
+	}).catch(function(err) {
+		getNewsDefer.reject(err);
+	});
+	return getNewsDefer.promise;
+}

@@ -1,5 +1,4 @@
-myapp.controller('NewsController', function($scope, $mdToast, MyService, $location, $mdDialog) {
-
+myapp.controller('NewsController', function($scope, $mdToast, OrgService, $location, $mdDialog) {
   $scope.addNews = function() {
     $mdDialog.show({
         controller : function($scope, theScope) {
@@ -12,7 +11,25 @@ myapp.controller('NewsController', function($scope, $mdToast, MyService, $locati
         theScope : $scope
       }
     }).then(function(){
-           });
+    });
+  };
+
+  $scope.addNewsDB = function() {
+    //var org_id = $rootScope.orgDetails.id;
+    $scope.newsForm.org_id = 1;
+    console.log($scope.newsForm);
+    OrgService.addNews($scope.newsForm).then(function(){
+      $mdToast.show($mdToast.simple()
+        .textContent("Notification for Proposal is successfully Submitted")
+        .position("top right")
+        .hideDelay(5000));
+      $scope.proposal = {};
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to Submit Notification")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
   };
 
     $scope.goToDashboard = function()

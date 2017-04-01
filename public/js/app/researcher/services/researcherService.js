@@ -13,6 +13,19 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 			});
 			return organisationsDefer.promise;
 		},
+		getNews: function() {
+			var newsDefer = $q.defer();
+			Restangular.one('/getNews').get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					newsDefer.resolve(data.data);
+				} else {
+					newsDefer.reject();
+				}
+			}, function(err){
+				newsDefer.reject(err);
+			});
+			return newsDefer.promise;
+		},
 		getDashboardData : function() {
 			console.log("hello");
 			var dashboardDefer = $q.defer();
@@ -39,7 +52,7 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				city : researcherDetails.city,
 				organisation : researcherDetails.organisation,
 				gender : researcherDetails.gender,
-				//username : researcherDetails.username,
+				username : researcherDetails.username,
 				password : researcherDetails.password,
 			}
 			Restangular.one('/registerResearcher').post('', payload).then(function(data) {
@@ -65,26 +78,26 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				signInDefer.reject(err);
 			});
 			return signInDefer.promise;
-		}
-		// submitProposal : function(proposalDetails, id) {
-		// 	var submitProposalDefer = $q.defer();
-		// 	console.log(proposalDetails);
-		// 	var payload = {
-		// 		name : proposalDetails.name,
-		// 		org_id : parseInt(proposalDetails.org_id),
-		// 		doc : proposalDetails.myFile.name,
-		// 		researcher_id: id
-		// 	}
-		// 	Restangular.one('/submitProposal').post('', payload).then(function(data) {
-		// 		if(data.returnCode == "SUCCESS") {
-		// 			submitProposalDefer.resolve();
-		// 		} else {
-		// 			submitProposalDefer.reject({errorCode : data.errorCode});
-		// 		}
-		// 	}, function(err) {
-		// 		submitProposalDefer.reject(err);
-		// 	});
-		// 	return submitProposalDefer.promise;
-		// }
+		},
+		 submitProposal : function(proposalDetails, id) {
+		 	var submitProposalDefer = $q.defer();
+		 	console.log(proposalDetails);
+		 	var payload = {
+		 		name : proposalDetails.name,
+		 		org_id : parseInt(proposalDetails.org_id),
+		 		doc : proposalDetails.myFile.name,
+		 		researcher_id: id
+		 	}
+		 	Restangular.one('/submitProposal').post('', payload).then(function(data) {
+		 		if(data.returnCode == "SUCCESS") {
+		 			submitProposalDefer.resolve();
+		 		} else {
+		 			submitProposalDefer.reject({errorCode : data.errorCode});
+		 		}
+		 	}, function(err) {
+		 		submitProposalDefer.reject(err);
+		 	});
+		 	return submitProposalDefer.promise;
+		 }
   }
 });
