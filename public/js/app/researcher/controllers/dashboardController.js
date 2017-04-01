@@ -1,6 +1,14 @@
 myapp.controller('DashboardController', function($scope, $mdToast, MyService, $location) {
-
-  $scope.goToDashboard = function()
+  console.log("hwlllloo");
+ResearcherService.getDashboardData().then(function(data){
+    $scope.dashboardDetails = data;
+  }, function(err) {
+    $mdToast.show($mdToast.simple()
+    .textContent("Error in Fetching dashboard details.")
+    .position("top right")
+    .hideDelay(5000));
+  })
+  $scope.goToDashboardResearcher = function()
   {
     $location.path('/researcherDashboardPage')
   }

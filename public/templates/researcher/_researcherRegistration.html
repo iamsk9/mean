@@ -23,25 +23,25 @@
                    <a class="hiddenanchor" id="toregister"></a>
                    <div id="register_wrapper">
                        <div id="register" class="animate form">
-                           <form  action="mysuperscript.php" autocomplete="on">
+                           <form autocomplete="on">
                                <h1> Sign up </h1>
                                <p>
                                    <label for="usernamesignup" class="uname" >Your Name</label>
-                                   <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="MyName" />
+                                   <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="Name" ng-model="researher.name"/>
                                </p>
                                <p>
                                    <label for="emailsignup" class="youmail" > Your email</label>
-                                   <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
+                                   <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com" ng-model="researher.email"/>
                                </p>
                                <p>
                                    <label for="mobileno" class="youmobile" > Your Mobile</label>
-                                   <input id="mobileno" name="mobileno" required="required" type="tel" placeholder="Mobile Number"/>
+                                   <input id="mobileno" name="mobileno" required="required" type="tel" placeholder="Mobile Number" ng-model="researher.mobile"/>
                                </p>
                                <p>
                                    <label for="nationality" class="younationality" > Your Nationality</label>
                                    <div class="input-group">
-                                     <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality">
-                                       <option>-select-</option>
+                                     <select class="form-control" name="nationality" id="nationality"  placeholder="Please select your Nationality" ng-model="researher.nationality">
+                                       <option value="" disabled selected>-select-</option>
                                        <option>India</option>
                                        <option>Singapore</option>
                                        <option>Malaysia</option>
@@ -52,8 +52,8 @@
                                <p>
                                    <label for="state" class="youstate" > Your State</label>
                                    <div class="input-group">
-                                     <select class="form-control" name="state" id="state"  placeholder="Please select your state">
-                                       <option>-select-</option>
+                                     <select class="form-control" name="state" id="state"  placeholder="Please select your state" ng-model="researher.state">
+                                       <option value="" disabled selected>-select-</option>
                                        <option>Andhra Pradesh</option>
                                        <option>Tamil Nadu</option>
                                        <option>Orissa</option>
@@ -63,7 +63,7 @@
                                </p>
                                <p>
                                    <label for="city" class="youcity" > City Of Residence</label>
-                                   <input id="city" name="city" required="required" type="text" placeholder="MyResidence"/>
+                                   <input id="city" name="city" required="required" type="text" placeholder="MyResidence" ng-model="researher.city"/>
                                </p>
                                <p>
                                    <label for="organization" class="youorg" > Your Organization</label>
@@ -72,8 +72,8 @@
                                <p>
                                    <label for="gender" class="yougen" > Your Gender</label>
                                    <div class="input-group">
-                                     <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender">
-                                       <option>-select-</option>
+                                     <select class="form-control" name="gender" id="gender"  placeholder="Please select your gender" ng-model="researher.gender">
+                                       <option value="" disabled selected>-select-</option>
                                        <option>Male</option>
                                        <option>Female</option>
                                      </select>
@@ -81,14 +81,14 @@
                                </p>
                                <p>
                                    <label for="passwordsignup" class="youpasswd">Your password </label>
-                                   <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                                   <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO" ng-model="researher.password"/>
                                </p>
                                <p>
                                    <label for="passwordsignup_confirm" class="youpasswd" >Please confirm your password </label>
                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                </p>
-                               <p class="signin button">
-                                 <input type="submit" value="Sign up"/>
+                               <p class="signin button" >
+                                 <input type="submit" value="Sign up" ng-click="registerResearcher()"/>
                                </p>
                                <p class="change_link">
                                  Already a member ?

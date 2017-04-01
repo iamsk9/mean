@@ -13,6 +13,20 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 			});
 			return organisationsDefer.promise;
 		},	
+		getDashboardData : function() {
+			console.log("hello");
+			var dashboardDefer = $q.defer();
+			Restangular.one('/dashboard').get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					dashboardDefer.resolve(data.data);
+				} else {
+					dashboardDefer.reject();
+				}
+			}, function(err) {
+				dashboardDefer.reject(err);
+			});
+			return dashboardDefer.promise;
+		},
 		registerResearcher : function(researcherDetails) {
 			var registerResearcherDefer = $q.defer();
 			console.log(researcherDetails);
@@ -25,7 +39,7 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				city : researcherDetails.city,
 				organization : researcherDetails.organization,
 				gender : researcherDetails.gender,
-				username : researcherDetails.username,
+				//username : researcherDetails.username,
 				password : researcherDetails.password,				
 			}
 			Restangular.one('/registerResearcher').post('', payload).then(function(data) {
@@ -38,7 +52,7 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 				registerResearcherDefer.reject(err);
 			});
 			return registerResearcherDefer.promise;
-		}		
+		},		
 		// submitProposal : function(proposalDetails, id) {
 		// 	var submitProposalDefer = $q.defer();
 		// 	console.log(proposalDetails);

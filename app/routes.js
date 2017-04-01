@@ -17,6 +17,8 @@ var ClientController = require('./researcher/controllers/clientController.js');
 
 var ResearcherController = require('./researcher/controllers/researcherController.js');
 
+var DashboardController = require('./researcher/controllers/dashboardController.js');
+
 var OrganisationsController = require('./researcher/controllers/organisationsController.js');
 
 var ProposalsController = require('./researcher/controllers/proposalsController.js');
@@ -27,6 +29,8 @@ module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
+
+  apiRoutes.get('/dashboard', DashboardController.getDashboardData);
 
   apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
 
