@@ -1,6 +1,7 @@
-myapp.controller('DashboardController', function($scope, $mdToast, MyService, $location) {
-  console.log("hwlllloo");
-ResearcherService.getDashboardData().then(function(data){
+
+myapp.controller('ResearcherDashboardController', function($scope, $mdToast, MyService, $location) {
+
+  ResearcherService.getDashboardData().then(function(data){
     $scope.dashboardDetails = data;
   }, function(err) {
     $mdToast.show($mdToast.simple()
@@ -34,6 +35,7 @@ ResearcherService.getDashboardData().then(function(data){
   }
   $scope.goToNewProposal = function()
   {
+    console.log("new pro");
     $location.path('/newProposal')
   }
   $scope.goToPreviousProposals = function()

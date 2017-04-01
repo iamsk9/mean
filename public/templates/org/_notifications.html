@@ -42,7 +42,7 @@
        <div class="panel-body">
          <md-content>
            <md-list flex>
-             <md-list-item class="md-3-line" ng-repeat="not in notifications" ng-click="null">
+             <md-list-item class="md-3-line" ng-repeat="not in notifications" ng-click="openNotification()">
                <img src="../../images/s1.png" class="md-avatar" alt="$$" />
                <div class="md-list-item-text" layout="column">
                  <h3>{{ not.not_name }}</h3>
@@ -57,3 +57,11 @@
      </div>
    </div>
 </div>
+
+<script type = "text/ng-template" id = "notification.tmpl.html">
+	<md-dialog>
+		 <md-dialog-content>
+       Working
+		 </md-dialog-content>
+	</md-dialog>
+</script>

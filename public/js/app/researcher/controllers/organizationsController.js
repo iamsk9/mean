@@ -1,4 +1,4 @@
-myapp.controller('OrganizationsController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherOrganizationsController', function($scope, $mdToast, MyService, $location) {
 
   $scope.goToDashboard = function()
   {

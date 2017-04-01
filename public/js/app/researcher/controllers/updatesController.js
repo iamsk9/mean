@@ -1,4 +1,4 @@
-myapp.controller('UpdatesController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherUpdatesController', function($scope, $mdToast, MyService, $location) {
 
   $scope.goToDashboard = function()
   {

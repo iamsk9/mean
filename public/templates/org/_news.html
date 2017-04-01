@@ -39,9 +39,57 @@
        <div class="panel-heading">
          News
        </div>
+       <md-button class="md-raised md-primary" style="float: right;" ng-click="addNews()">Add News</md-button> <br><br><br>
        <div class="panel-body">
-         News Page
        </div>
      </div>
    </div>
 </div>
+
+<script type = "text/ng-template" id = "addNews.tmpl.html">
+	<md-dialog>
+    <md-toolbar>
+       <div class="md-toolbar-tools">
+         <h2>Add New News</h2>
+       </div>
+     </md-toolbar>
+     <md-dialog-content style="width:400px;max-height:810px;margin-top:20px;margin-left:auto;margin-right: auto">
+       <form name = "newsForm">
+         <div layout = "column" layout-align = "center center">
+           <md-input-container style = "width : 300px" class = "md-block">
+             <label>News Title</label>
+             <input type="text" required="" name = "newname" ng-model = "newsForm.newsname" required>
+             <div ng-messages = "newsForm.newsname.$error">
+               <div ng-message = "required">This is required</div>
+             </div>
+           </md-input-container>
+           <md-input-container style = "width : 300px" class = "md-block">
+             <label>News Details</label>
+             <textarea ng-model="newsForm.news_details" md-maxlength="2000" rows="150"></textarea>
+             <div ng-messages = "newsForm.news_details.$error">
+               <div ng-message = "required">This is required</div>
+             </div>
+           </md-input-container>
+           <md-input-container style = "width : 300px" class = "md-block">
+             <label>Minimum Funding</label>
+             <input type="number" required="" name = "min_fund" ng-model = "newsForm.min_fund" required>
+             <div ng-messages = "newsForm.min_fund.$error">
+               <div ng-message = "required">This is required</div>
+             </div>
+           </md-input-container>
+           <md-input-container style = "width : 300px" class = "md-block">
+             <label>Maximum Funding</label>
+             <input type="number" required="" name = "max_fund" ng-model = "newsForm.max_fund" required>
+             <div ng-messages = "newsForm.max_fund.$error">
+               <div ng-message = "required">This is required</div>
+             </div>
+           </md-input-container>
+           <div layout = "row" layout-align = "center center">
+ 						<md-button class="md-raised md-primary" style = "font-size : 1.3em"
+ 						ng-click = "addNews()">ADD NEWS</md-button>
+ 		       </div>
+         </div>
+       </form>
+		 </md-dialog-content>
+	</md-dialog>
+</script>

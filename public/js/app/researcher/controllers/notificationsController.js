@@ -1,4 +1,4 @@
-myapp.controller('NotificationsController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherNotificationsController', function($scope, $mdToast, MyService, $location) {
 
   $scope.goToDashboard = function()
   {

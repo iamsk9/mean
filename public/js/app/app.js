@@ -33,7 +33,7 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 			})
 			.when('/researcherDashboardPage', {
 					templateUrl: researcherpath + '/_dashboard.html',
-					controller: 'DashboardController'
+					controller: 'ResearcherDashboardController'
 			})
 			.when('/newProposal', {
 					templateUrl: researcherpath + '/_newProposal.html',
@@ -45,23 +45,23 @@ var myapp = angular.module('myapp', ['ngMaterial', 'ngRoute', 'restangular', 'ng
 			})
 			.when('/news', {
 					templateUrl: researcherpath + '/_news.html',
-					controller: 'NewsController'
+					controller: 'ResearcherNewsController'
 			})
 			.when('/notifications', {
 					templateUrl: researcherpath + '/_notifications.html',
-					controller: 'NotificationsController'
+					controller: 'ResearcherNotificationsController'
 			})
 			.when('/profile', {
 					templateUrl: researcherpath + '/_profile.html',
-					controller: 'ProfileController'
+					controller: 'ResearcherProfileController'
 			})
 			.when('/updates', {
 					templateUrl: researcherpath + '/_updates.html',
-					controller: 'UpdatesController'
+					controller: 'ResearcherUpdatesController'
 			})
 			.when('/organizations', {
 					templateUrl: researcherpath + '/_organizations.html',
-					controller: 'OrganizationsController'
+					controller: 'ResearcherOrganizationsController'
 			})
 			.when('/organisationDashboardPage', {
 					templateUrl: orgpath + '/_dashboard.html',
