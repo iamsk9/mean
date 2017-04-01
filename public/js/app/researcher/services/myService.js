@@ -12,7 +12,7 @@ myapp.factory('MyService', function(Restangular, $q){
 				organisationsDefer.reject(err);
 			});
 			return organisationsDefer.promise;
-		}
+		},
 		// registerResearcher : function(researcherDetails) {
 		// 	var registerResearcherDefer = $q.defer();
 		// 	console.log(researcherDetails);
@@ -26,7 +26,7 @@ myapp.factory('MyService', function(Restangular, $q){
 		// 		organization : researcherDetails.organization,
 		// 		gender : researcherDetails.gender,
 		// 		username : researcherDetails.username,
-		// 		password : researcherDetails.password,				
+		// 		password : researcherDetails.password,
 		// 	}
 		// 	Restangular.one('/registerResearcher').post('', payload).then(function(data) {
 		// 		if(data.returnCode == "SUCCESS") {
@@ -38,7 +38,7 @@ myapp.factory('MyService', function(Restangular, $q){
 		// 		registerResearcherDefer.reject(err);
 		// 	});
 		// 	return registerResearcherDefer.promise;
-		// }		
+		// }
         	goToResearcherRegistration: function() {
 			var organisationsDefer = $q.defer();
 			Restangular.one('/registerResearcher').get().then(function(data) {
@@ -51,6 +51,6 @@ myapp.factory('MyService', function(Restangular, $q){
 				organisationsDefer.reject(err);
 			});
 			return organisationsDefer.promise;
-		}		
+		}
   }
 });

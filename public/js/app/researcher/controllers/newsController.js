@@ -1,4 +1,4 @@
-myapp.controller('NewsController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherNewsController', function($scope, $mdToast, MyService, $location) {
   $scope.goToDashboard = function()
   {
     $location.path('/researcherDashboardPage')

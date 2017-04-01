@@ -1,4 +1,4 @@
-myapp.controller('DashboardController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherDashboardController', function($scope, $mdToast, MyService, $location) {
 
   $scope.goToDashboard = function()
   {
@@ -26,6 +26,7 @@ myapp.controller('DashboardController', function($scope, $mdToast, MyService, $l
   }
   $scope.goToNewProposal = function()
   {
+    console.log("new pro");
     $location.path('/newProposal')
   }
   $scope.goToPreviousProposals = function()

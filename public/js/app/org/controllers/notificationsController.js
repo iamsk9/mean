@@ -1,8 +1,7 @@
-myapp.controller('NotificationsController', function($scope, $mdToast, OrgService, $location) {
+myapp.controller('NotificationsController', function($scope, $mdToast, OrgService, $location, $mdDialog) {
   function getNotifications() {
     var orgId = 2;
     OrgService.getNotifications(orgId).then(function(notifications){
-      console.log("Yes");
       console.log(notifications);
   		$scope.notifications = notifications;
   	}, function(err) {
@@ -13,6 +12,35 @@ myapp.controller('NotificationsController', function($scope, $mdToast, OrgServic
   	});
   }
   getNotifications();
+
+  $scope.openNotification = function() {
+    $mdDialog.show({
+ 	    	controller : function($scope, theScope) {
+ 	    		$scope.theScope = theScope
+ 	    	},
+ 			templateUrl : 'notification.tmpl.html',
+ 			parent : angular.element(document.body),
+ 			clickOutsideToClose:true,
+ 			locals : {
+ 				theScope : $scope
+ 			}
+ 	 	}).then(function(){
+           });
+  };
+
+  function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+   }
 
   $scope.goToDashboard = function()
   {
