@@ -67,17 +67,22 @@ exports.authenticateUser = function(req) {
 				var user = results[0];
 				comparePassword(req.body.password, user.password).then(function(isMatch){
 					if(isMatch) {
+
 							var result = {
 								id : user.id, researcher_name : user.researcher_name,
 								email : user.email
 							};
 							authenticateUserDefer.resolve(result);
 					} else {
+						
 						authenticateUserDefer.reject({errorCode : 1011});
 					}
 					connection.release();
 				});
 			} else {
+						console.log("Erorrrrrr");
+						console.log(err);
+						//alert("Login FAILURE --- Incorrect Details");
 				authenticateUserDefer.reject({errorCode : 1010});
 			}
 		})

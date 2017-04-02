@@ -76,7 +76,7 @@
           <a class="navbar-brand" ng-controller="HomeController">{{ clock  | date:'medium'}} IST</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a><span class="glyphicon glyphicon-home"></span></a></li>
+        <li ><a ng-controller="HomeController" ng-click="goToHomePage()"><span class="glyphicon glyphicon-home"></span></a></li>
           <li><a><span class="glyphicon glyphicon-arrow-down"></span>  Skip to main content</a></li>
           <li><a><span class="glyphicon glyphicon-arrow-down"></span>  Skip to navigation</a></li>
           <li><a><span class="glyphicon glyphicon-volume-up"></span>  Screen Reader Access</a></li>
@@ -88,7 +88,8 @@
       </div>
     </nav>
 		<div class="container">
-			<img src="../images/logo_2_1.png" alt="Home" / class="ministry_logo">
+			<img src="../images/logo_2_1.png" alt="Home" / class="ministry_logo" style="height: 60px">
+      <img src="../images/swach-bharat.png" alt="Home" / class="swach-bharat_logo" style="width: 150px;height: 70px" align="right">
 		</div>
     <div ng-view></div>
   </body>

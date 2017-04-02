@@ -1,7 +1,7 @@
 md-toast {
   position : fixed !important;
 }
-
+#success_message{ display: none;}
 .textDialog
 {
   color: black;
@@ -119,7 +119,7 @@ md-toast {
 
 .gallery-container .image-wrapper {
 	width : 70%;
-	height: 100%;
+	height: 50%;
 	margin : 50px auto;
 	text-align: center;
 }
@@ -395,12 +395,12 @@ body {
 
 .ministry_logo{
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .header-top{
   margin-bottom: 0px;
-  background-color: #000000;
+  background-color: #ff8c00;
   border: 0;
   font-size: 11px;
   line-height: 1.428;
@@ -412,7 +412,7 @@ body {
 
 .header-bottom{
   margin-bottom: 0px;
-  background-color: #532862;
+  background-color: #33a821;
   border: 0;
   font-size: 13px;
   line-height: 1.428;
