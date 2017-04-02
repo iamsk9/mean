@@ -64,3 +64,32 @@ exports.getNews = function(req,res){
 		}
 	});
 };
+
+exports.getNotifications = function(req,res){
+	ResearcherHelper.getNotifications(req.params.id).then(function(result){
+		res.json({returnCode : "SUCCESS", data : result, errorCode : null});
+	}, function(err){
+		console.log(err);
+		if(err.errorCode) {
+			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode})
+		} else {
+			console.log(err);
+			res.json({returnCode : "FAILURE", data : null, errorCode : 1014})
+		}
+	});
+};
+
+
+exports.getNotificationsCount = function(req,res){
+	ResearcherHelper.getNotificationsCount(req.params.id).then(function(result){
+		res.json({returnCode : "SUCCESS", data : result, errorCode : null});
+	}, function(err){
+		console.log(err);
+		if(err.errorCode) {
+			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode})
+		} else {
+			console.log(err);
+			res.json({returnCode : "FAILURE", data : null, errorCode : 1014})
+		}
+	});
+};

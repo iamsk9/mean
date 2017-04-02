@@ -26,7 +26,7 @@ exports.up = function(next) {
       city varchar(50), organisation varchar(50), gender varchar(10), password varchar(255) NOT NULL,\
       created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id))",
   		"CREATE TABLE proposals (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
-      org_id int NOT NULL, doc varchar(225) NOT NULL, message varchar(255), min_fund int, researcher_id int NOT NULL, \
+      org_id int NOT NULL, doc varchar(225) NOT NULL, message varchar(255), status INT, min_fund int, researcher_id int NOT NULL, \
   		created_at DATETIME, deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), \
       FOREIGN KEY (org_id) REFERENCES organisations(id), FOREIGN KEY (researcher_id) REFERENCES researcher(id))",
       "CREATE TABLE news (id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,\
@@ -36,7 +36,10 @@ exports.up = function(next) {
   		details varchar(255) NOT NULL, org_id int NOT NULL, created_at DATETIME, \
       deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY (id), FOREIGN KEY (org_id) REFERENCES organisations(id))",
       "CREATE TABLE notifications (id int NOT NULL AUTO_INCREMENT, pro_id int NOT NULL,\
-      not_name varchar(255) NOT NULL, not_read int NOT NULL, org_id int NOT NULL, created_at DATETIME, \
+      not_name varchar(255) NOT NULL, not_read int NOT NULL, message varchar(255), org_id int NOT NULL, created_at DATETIME, \
+      deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY(id), FOREIGN KEY (pro_id) REFERENCES proposals(id))",
+      "CREATE TABLE orgnotifications (id int NOT NULL AUTO_INCREMENT, pro_id int NOT NULL,\
+      not_name varchar(255) NOT NULL, not_read int NOT NULL, message varchar(255), org_id int NOT NULL, created_at DATETIME, \
       deleted_at DATETIME, modified_at DATETIME, PRIMARY KEY(id), FOREIGN KEY (pro_id) REFERENCES proposals(id))"
     ];
   		for(var i in query) {

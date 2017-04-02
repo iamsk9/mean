@@ -1,5 +1,32 @@
 myapp.factory('ResearcherService', function(Restangular, $q){
 	return {
+		getNotifications: function(id) {
+			var notificationDefer = $q.defer();
+			Restangular.one('/resnotifications/'+parseInt(id)).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					notificationDefer.resolve(data.data);
+				} else {
+					notificationDefer.reject();
+				}
+			}, function(err){
+				notificationDefer.reject(err);
+			});
+			return notificationDefer.promise;
+		},
+
+		getNotificationsCount: function(id) {
+			var notificationsCountDefer = $q.defer();
+			Restangular.one('/renotificationsCount/'+id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					notificationsCountDefer.resolve(data.data);
+				} else {
+					notificationsCountDefer.reject();
+				}
+			}, function(err){
+				notificationsCountDefer.reject(err);
+			});
+			return notificationsCountDefer.promise;
+		},
 		getOrganisations: function() {
 			var organisationsDefer = $q.defer();
 			Restangular.one('/organisations').get().then(function(data) {

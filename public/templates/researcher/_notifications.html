@@ -16,13 +16,12 @@
       <div class="side-menu-container">
         <ul class="nav navbar-nav">
           <li><a ng-click="goToDashboard()"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-          <li class="active"><a ng-click="goToNotification()"><span class="glyphicon glyphicon-alert"></span> Notifications</a></li>
+          <li class="active"><a ng-click="goToNotification()"><span class="glyphicon glyphicon-alert"></span> Notifications ({{notificationsCount}})</a></li>
           <li><a ng-click="goToNewProposal()"><span class="glyphicon glyphicon-plus"></span> New Proposals</a></li>
           <li><a ng-click="goToPreviousProposals()"><span class="glyphicon glyphicon-ok"></span> Previous Proposals</a></li>
           <li><a ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li><a ng-click="goToNews()"><span class="glyphicon glyphicon-cloud"></span> News ({{newsCount}})</a></li>
-          <li><a ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
        </ul>
      </div>
    </nav>
@@ -35,8 +34,48 @@
          Notifications
        </div>
        <div class="panel-body">
-         notifications Page
+         <md-content>
+           <md-list flex>
+             <md-list-item class="md-3-line" value="{{not.id}}" ng-repeat="not in notifications" ng-click="openNotification(not)">
+               <img src="../../images/s1.png" class="md-avatar" alt="$$" />
+               <div class="md-list-item-text" layout="column">
+                 <h3>{{ not.not_name }}</h3>
+                 <h4></h4>
+                 <p>{{ not.org_name }}</p>
+               </div>
+             </md-list-item>
+             <md-divider ></md-divider>
+           </md-list>
+         </md-content>
        </div>
      </div>
    </div>
 </div>
+<script type = "text/ng-template" id = "notification.tmpl.html">
+	<md-dialog>
+    <md-toolbar>
+           <div class="md-toolbar-tools">
+             <h2>{{theScope.notDetails.not_name}}</h2>
+           </div>
+    </md-toolbar>
+		 <md-dialog-content style="width:600px;max-height:1300px;margin-top:20px;margin-left:auto;margin-right: auto">
+       <div layout = "column" layout-align = "center center">
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Proposal Id : {{theScope.notDetails.pro_id}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Organisation Name : {{theScope.notDetails.org_name}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Message: {{theScope.notDetails.message}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <textarea ng-model="theScope.notification.message" md-maxlength="2000" rows="150" name="message"></textarea>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <md-button class="md-raised md-primary" ng-click="theScope.sendNotification()">Reply</md-button>
+         </md-input-container>
+       </div>
+		 </md-dialog-content>
+	</md-dialog>
+</script>

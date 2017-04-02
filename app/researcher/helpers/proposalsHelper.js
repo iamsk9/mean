@@ -17,11 +17,11 @@ var SALT_WORK_FACTOR = 19204;
 exports.submitProposal = function(req) {
 	var submitProposalDeferred = q.defer();
 	var conn;
-	var insertproposal = "INSERT INTO proposals (name, org_id, doc, message, min_fund, researcher_id, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?)";
+	var insertproposal = "INSERT INTO proposals (name, org_id, doc, message, status, min_fund, researcher_id, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?,?)";
 	db.getConnection().then(function(connection) {
 	   console.log("Inside");
 		 conn = connection;
-		 return utils.runQuery(conn, insertproposal, [req.name, req.org_id, req.doc, req.message, req.min_fund, req.researcher_id,
+		 return utils.runQuery(conn, insertproposal, [req.name, req.org_id, req.doc, req.message, 1, req.min_fund, req.researcher_id,
 			 moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')], true);
 	 }).then(function() {
 		 var query = "SELECT max(id) as proID from proposals where deleted_at is NULL";

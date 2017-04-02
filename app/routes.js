@@ -36,6 +36,8 @@ module.exports = function(app, apiRoutes, blobService) {
 
   apiRoutes.post('/addOrg', orgNotificationsController.addOrg);
 
+  apiRoutes.post('/sendNotification', orgNotificationsController.sendNotification);
+
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
 
   apiRoutes.get('/dashboardDetails/:id', ResearcherController.getDashboardDetails);
@@ -44,9 +46,15 @@ module.exports = function(app, apiRoutes, blobService) {
 
   apiRoutes.get('/getNews', ResearcherController.getNews);
 
+  apiRoutes.get('/getOrgNews/:id', orgNotificationsController.getNews);
+
   apiRoutes.get('/orgNotifications/:id', orgNotificationsController.getNotifications);
 
+  apiRoutes.get('/resnotifications/:id', ResearcherController.getNotifications);
+
   apiRoutes.get('/notificationsCount/:id', orgNotificationsController.getNotificationsCount);
+
+  apiRoutes.get('/renotificationsCount/:id', ResearcherController.getNotificationsCount);
 
   apiRoutes.get('/newsCount/', ResearcherController.getNewsCount);
 

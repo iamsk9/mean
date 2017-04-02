@@ -5,15 +5,24 @@ myapp.controller('ResearcherLoginController', function($scope, $rootScope, $mdTo
 				$scope.login.password != "") {
 				ResearcherService.signIn($scope.login).then(function(data){
 					$rootScope.researcherDetails = data.data;
+					$mdToast.show($mdToast.simple()
+						.textContent("Successful Login")
+						.position("bottom right")
+						.hideDelay(5000));
 					$location.path('/researcherDashboardPage');
 				}, function(err){
+					console.log("error");
+					$mdToast.show($mdToast.simple()
+						.textContent("Incorrect Email-Id or Password")
+						.position("bottom right")
+						.hideDelay(5000));
 					if(err.errorCode == 1010) {
 						$scope.loginForm.email.$error.notRegistered = true;
-						$scope.loginForm.email.$invalid = true;						
+						$scope.loginForm.email.$invalid = true;
 						$mdToast.show($mdToast.simple()
   						.textContent("Failed to Login Incorrect Credentials")
   						.position("top right")
-  						.hideDelay(5000));	
+  						.hideDelay(5000));
 					} else if(err.errorCode == 1011) {
 						$scope.loginForm.password.$error.incorrect = true;
 						$scope.loginForm.password.$invalid = true;

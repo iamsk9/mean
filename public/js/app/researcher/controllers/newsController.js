@@ -14,7 +14,6 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootSco
   getNews();
 
   $scope.openNews = function(item) {
-    console.log(item);
     $scope.newsDetails = item;
     $mdDialog.show({
         controller : function($scope, theScope) {
@@ -64,10 +63,6 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootSco
   {
     $location.path('/news')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/updates')
-  }
   $scope.goToNewProposal = function()
   {
     $location.path('/newProposal')
@@ -78,6 +73,10 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootSco
   }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

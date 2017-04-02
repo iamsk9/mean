@@ -20,10 +20,6 @@ myapp.controller('ResearcherUpdatesController', function($scope, $mdToast, MySer
   {
     $location.path('/news')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/updates')
-  }
   $scope.goToNewProposal = function()
   {
     $location.path('/newProposal')
@@ -31,5 +27,13 @@ myapp.controller('ResearcherUpdatesController', function($scope, $mdToast, MySer
   $scope.goToPreviousProposals = function()
   {
     $location.path('/previousProposals')
+  }
+  $scope.goToHomePage = function()
+  {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
+    $location.path('/')
   }
 });

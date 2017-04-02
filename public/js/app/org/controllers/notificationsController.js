@@ -1,4 +1,6 @@
 myapp.controller('NotificationsController', function($scope, $rootScope, $mdToast, OrgService, $location, $mdDialog) {
+
+  var id;
   function getNotifications() {
     var orgId = $rootScope.orgDetails.id;
     OrgService.getNotifications(orgId).then(function(notifications){
@@ -16,6 +18,7 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
   $scope.openNotification = function(item) {
     console.log(item);
     $scope.notDetails = item;
+    id = item.id;
     if (!item.not_read) {
         markAsRead(item.id);
     }
@@ -40,6 +43,41 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
   		console.log("Error");
   	});
   };
+
+  $scope.sendNotification = function()
+  {
+    var data = {};
+    data.pro_id = id;
+    data.message = $scope.notification.message;
+    data.org_id = $rootScope.orgDetails.id;
+    if($scope.notification.status == "review")
+    {
+      data.status = 1;
+      data.not_name = "Proposal Status is under review";
+    }
+    else if($scope.notification.status == "reject")
+    {
+      data.status = 2;
+      data.not_name = "Proposal got rejected";
+    }
+    else
+    {
+      data.status = 3;
+      data.not_name = "Proposal is approved";
+    }
+    OrgService.sendNotification(data).then(function(){
+      $mdToast.show($mdToast.simple()
+        .textContent("Notification sent to the Researcher")
+        .position("top right")
+        .hideDelay(5000));
+      $scope.proposal = {};
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to Submit Notification")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
+  }
 
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
@@ -75,12 +113,12 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
   {
     $location.path('/orgNews')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/orgUpdates')
-  }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

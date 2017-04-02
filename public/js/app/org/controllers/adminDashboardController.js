@@ -1,6 +1,10 @@
 myapp.controller('AdminDashboardController', function($scope, $mdToast, $mdDialog, OrgService, $location) {
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
   $scope.addNewOrg = function()
