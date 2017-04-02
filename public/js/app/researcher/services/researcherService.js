@@ -1,5 +1,18 @@
 myapp.factory('ResearcherService', function(Restangular, $q){
 	return {
+		getPreviousproposals: function(id) {
+			var previousproposalsDefer = $q.defer();
+			Restangular.one('/previousProposals/'+id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					previousproposalsDefer.resolve(data.data);
+				} else {
+					previousproposalsDefer.reject();
+				}
+			}, function(err){
+				previousproposalsDefer.reject(err);
+			});
+			return previousproposalsDefer.promise;
+		},
 		getOrganisations: function() {
 			var organisationsDefer = $q.defer();
 			Restangular.one('/organisations').get().then(function(data) {

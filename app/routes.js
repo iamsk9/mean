@@ -19,6 +19,8 @@ var ResearcherController = require('./researcher/controllers/researcherControlle
 
 var DashboardController = require('./researcher/controllers/dashboardController.js');
 
+var PreviousProposalsController = require('./researcher/controllers/previousProposalsController.js');
+
 var OrganisationsController = require('./researcher/controllers/organisationsController.js');
 
 var ProposalsController = require('./researcher/controllers/proposalsController.js');
@@ -29,6 +31,8 @@ module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/authenticate', ResearcherController.authenticate);
 
   apiRoutes.post('/orgAuthenticate', orgNotificationsController.authenticate);
+
+  apiRoutes.get('/previousProposals/:id', PreviousProposalsController.getPreviousproposals);
 
   apiRoutes.post('/submitProposal', ProposalsController.submitProposal);
 

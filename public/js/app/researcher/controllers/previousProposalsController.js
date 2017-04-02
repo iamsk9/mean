@@ -1,4 +1,32 @@
-myapp.controller('PreviousProposalsController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('PreviousProposalsController', function($scope,$rootScope,ResearcherService, $mdToast, MyService, $location) {
+  function getPreviousproposals() {
+    var orgId = $rootScope.researcherDetails.id;
+    ResearcherService.getPreviousproposals(orgId).then(function(previousProposals){
+      console.log(previousProposals);
+      $scope.previousProposals = previousProposals;
+    }, function(err) {
+      $mdToast.show($mdToast.simple()
+      .textContent("Unable to fetch notifications")
+      .position("top right")
+      .hideDelay(5000));
+    });
+  }
+  getPreviousproposals();
+
+  $scope.openPreviousproposals = function() {
+    $mdDialog.show({
+        controller : function($scope, theScope) {
+          $scope.theScope = theScope
+        },
+      templateUrl : 'notification.tmpl.html',
+      parent : angular.element(document.body),
+      clickOutsideToClose:true,
+      locals : {
+        theScope : $scope
+      }
+    }).then(function(){
+           });
+  };
   $scope.goToDashboard = function()
   {
     $location.path('/researcherDashboardPage')
