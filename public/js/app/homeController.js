@@ -26,4 +26,12 @@ myapp.controller('HomeController', function($scope, $mdToast, MyService, $timeou
 	$scope.goToResearcherRegistration = function() {
 		$location.path('/researcherRegistration');
 	}
+
+	$scope.goToContactPage = function() {
+		$location.path('/contactForm');
+	}
+
+	$scope.goToHomePage = function() {
+		$location.path('/');
+	}
 });

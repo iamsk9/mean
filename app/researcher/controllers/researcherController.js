@@ -14,9 +14,12 @@ exports.authenticate = function(req,res){
 	}, function(err){
 		console.log(err);
 		if(typeof(err.errorCode) != "undefined") {
+			alert("Login FAILURE --- Incorrect Details");
 			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode})
 		} else {
+			console.log("Eroorrrrrr");
 			console.log(err);
+			alert("Login FAILURE --- Incorrect Details");
 			res.json({returnCode : "FAILURE", data : null, errorCode : 1014})
 		}
 	});

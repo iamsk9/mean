@@ -9,16 +9,32 @@ myapp.controller('ResearcherLoginController', function($scope, $rootScope, $mdTo
 				}, function(err){
 					if(err.errorCode == 1010) {
 						$scope.loginForm.email.$error.notRegistered = true;
-						$scope.loginForm.email.$invalid = true;
+						$scope.loginForm.email.$invalid = true;						
+						$mdToast.show($mdToast.simple()
+  						.textContent("Failed to Login Incorrect Credentials")
+  						.position("top right")
+  						.hideDelay(5000));	
 					} else if(err.errorCode == 1011) {
 						$scope.loginForm.password.$error.incorrect = true;
 						$scope.loginForm.password.$invalid = true;
+						$mdToast.show($mdToast.simple()
+  						.textContent("Failed to Login Incorrect Credentials")
+  						.position("top right")
+  						.hideDelay(5000));
 					} else if(err.errorCode == 1029) {
 						$scope.loginForm.password.$error.clientBlocked = true;
 						$scope.loginForm.password.$invalid = true;
+						$mdToast.show($mdToast.simple()
+  						.textContent("Failed to Login Incorrect Credentials")
+  						.position("top right")
+  						.hideDelay(5000));
 					} else if(err.errorCode == 1014) {
 						$scope.loginForm.password.$error.serverError = true;
 						$scope.loginForm.password.$invalid = true;
+						$mdToast.show($mdToast.simple()
+  						.textContent("Failed to Login Incorrect Credentials")
+  						.position("top right")
+  						.hideDelay(5000));
 					}
 				});
 			}
