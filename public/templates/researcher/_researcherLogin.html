@@ -30,7 +30,7 @@
               <h1>Log in</h1>
               <p>
                 <label for="username" class="uname" > Enter Email Id </label>
-                <input id="username" name="username" required="required" type="text" placeholder="mymail@mail.com" ng-model="login.email"/>
+                <input id="username" name="username" required="required" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="mymail@mail.com" ng-model="login.email"/>
               </p>
               <p>
                 <label for="password" class="youpasswd"> Your password </label>

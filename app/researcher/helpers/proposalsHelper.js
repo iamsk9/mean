@@ -38,3 +38,15 @@ exports.submitProposal = function(req) {
 	 });
 	 return submitProposalDeferred.promise;
 }
+exports.getPreviousproposals = function(req) {
+	var getPreviousproposalsDefer = q.defer();
+	var query = "SELECT * from proposals";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getPreviousproposalsDefer.resolve(results);
+	}).catch(function(err) {
+		getPreviousproposalsDefer.reject(err);
+	});
+	return getPreviousproposalsDefer.promise;
+}

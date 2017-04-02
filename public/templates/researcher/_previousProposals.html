@@ -34,7 +34,18 @@
          Previous Proposals
        </div>
        <div class="panel-body">
-         Previous Proposals Page
+         <md-content>
+           <md-list flex>
+             <md-list-item class="md-3-line" ng-repeat="pp in previousProposals" ng-click="openNotification()">
+               <img src="../../images/s1.png" class="md-avatar" alt="$$" />
+               <div class="md-list-item-text" layout="column">
+                 <h4></h4>
+                 <p>{{pp.name}}</p>
+               </div>
+             </md-list-item>
+             <md-divider ></md-divider>
+           </md-list>
+         </md-content>
        </div>
      </div>
    </div>
