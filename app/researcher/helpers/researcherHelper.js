@@ -39,6 +39,19 @@ function comparePassword(candidatePassword, dbPassword) {
     return comparePasswordDefer.promise;
 }
 
+exports.getNewsCount = function(req) {
+	var getNewsCountDefer = q.defer();
+	var query = "SELECT count(*) as len FROM news WHERE deleted_at is NULL";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getNewsCountDefer.resolve(results[0].len);
+	}).catch(function(err) {
+		getNewsCountDefer.reject(err);
+	});
+	return getNewsCountDefer.promise;
+}
+
 
 exports.authenticateUser = function(req) {
 	var authenticateUserDefer = q.defer();
@@ -108,7 +121,7 @@ exports.registerResearcher = function(req) {
 
 exports.getNews = function() {
 	var getNewsDefer = q.defer();
-	var query = "SELECT news.id, news.name, news.max_fund, news.min_fund, news.last_date, org.org_name from news news INNER JOIN organisations org ON news.org_id = org.id where news.deleted_at is NULL";
+	var query = "SELECT news.id, news.name, news.max_fund, news.last_date, org.org_name, news.details from news news INNER JOIN organisations org ON news.org_id = org.id where news.deleted_at is NULL";
 	db.getConnection().then(function(connection) {
 		return utils.runQuery(connection, query);
 	}).then(function(results) {

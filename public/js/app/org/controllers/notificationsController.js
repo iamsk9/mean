@@ -16,7 +16,9 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
   $scope.openNotification = function(item) {
     console.log(item);
     $scope.notDetails = item;
-    markAsRead(item.id);
+    if (!item.not_read) {
+        markAsRead(item.id);
+    }
     $mdDialog.show({
  	    	controller : function($scope, theScope) {
  	    		$scope.theScope = theScope

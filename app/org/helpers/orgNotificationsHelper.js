@@ -97,12 +97,12 @@ exports.getNotificationsCount = function(req) {
 exports.addNews = function(req) {
 	var addNewsDeferred = q.defer();
 	var conn;
-	var addNewsQuery = "INSERT INTO news(name, details, org_id, max_fund, min_fund, last_date, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?)";
+	var addNewsQuery = "INSERT INTO news(name, details, org_id, max_fund, last_date, created_at, modified_at) VALUES (?,?,?,?,?,?,?)";
 
 	db.getConnection().then(function(connection) {
 			console.log("asdgasdg");
 			console.log(req);
-			connection.query(addNewsQuery, [req.name, req.details, req.org_id, req.max_fund, req.min_fund,
+			connection.query(addNewsQuery, [req.name, req.details, req.org_id, req.max_fund,
 				 req.last_date, moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')]
 			, function(err, results) {
 				console.log("query");
@@ -125,7 +125,7 @@ exports.addOrg = function(req) {
 
 	var addOrgDeferred = q.defer();
 	var conn;
-	var addOrgQuery = "INSERT INTO organisations(org_name, established_on, username, password, max_fund, created_at, modified_at) VALUES (?,?,?,?,?,?)";
+	var addOrgQuery = "INSERT INTO organisations(org_name, established_on, username, password, max_fund, created_at, modified_at) VALUES (?,?,?,?,?,?,?)";
 
 	db.getConnection().then(function(connection) {
 			console.log("asdgasdg");
@@ -151,4 +151,18 @@ exports.addOrg = function(req) {
 		addOrgDeferred.reject(err);
 	});
 	return addOrgDeferred.promise;
+}
+
+exports.markAsRead = function(id) {
+	var markAsReadDefer = q.defer();
+	console.log(id);
+	var query = "UPDATE notifications SET not_read = 1 where id = ?";
+	db.getConnection().then(function(connection) {
+		utils.runQuery(connection, query, id);
+    }).then(function() {
+		markAsReadDefer.resolve();
+	}).catch(function(err) {
+		markAsReadDefer.reject(err);
+	});
+	return markAsReadDefer.promise;
 }

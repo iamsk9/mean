@@ -3,7 +3,10 @@ myapp.controller('DashboardController', function($scope, $rootScope, $mdToast, O
     var orgId = $rootScope.orgDetails.id;
     OrgService.getNotificationsCount(orgId).then(function(notificationsCount){
       console.log(notificationsCount);
-  		$scope.notificationsCount = notificationsCount;
+      if (notificationsCount > 0)
+        $rootScope.notificationsCount = notificationsCount;
+      else
+  		$rootScope.notificationsCount = 0;
   	}, function(err) {
   		$mdToast.show($mdToast.simple()
   		.textContent("Unable to fetch notifications")

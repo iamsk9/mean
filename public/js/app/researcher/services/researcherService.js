@@ -13,6 +13,19 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 			});
 			return organisationsDefer.promise;
 		},
+		getNewsCount: function(id) {
+			var newsCountDefer = $q.defer();
+			Restangular.one('/newsCount/').get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					newsCountDefer.resolve(data.data);
+				} else {
+					newsCountDefer.reject();
+				}
+			}, function(err){
+				newsCountDefer.reject(err);
+			});
+			return newsCountDefer.promise;
+		},
 		getDashboardDetails: function(details) {
 			var dashboardDefer = $q.defer();
 			Restangular.one('/dashboardDetails/'+details.id).get().then(function(data) {
