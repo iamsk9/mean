@@ -28,7 +28,10 @@ myapp.factory('OrgService', function(Restangular, $q){
 		},
 		markAsRead: function(id) {
 			var markAsReadDefer = $q.defer();
-			Restangular.one('/markAsRead/'+id).patch().then(function() {
+			var payload = {
+				id : id
+			}
+			Restangular.one('/markAsRead/'+id).patch(payload).then(function(data) {
 				if(data.returnCode == "SUCCESS") {
 					markAsReadDefer.resolve();
 				} else {
@@ -46,7 +49,6 @@ myapp.factory('OrgService', function(Restangular, $q){
 		 		name : newsDetails.newsname,
 				org_id : newsDetails.org_id,
 				details : newsDetails.news_details,
-				min_fund : newsDetails.min_fund,
 				max_fund : newsDetails.max_fund,
 				last_date : newsDetails.last_date
 		 	}

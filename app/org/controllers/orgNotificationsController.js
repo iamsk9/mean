@@ -23,6 +23,17 @@ exports.authenticate = function(req,res){
 	});
 };
 
+exports.markAsRead = function(req, res) {
+	orgNotificationsHelper.markAsRead(req.body.id).then(function(data){
+		res.json({returnCode: "SUCCESS", data: data, errorCode : null});
+	}, function(err) {
+		if(err.errorCode) {
+			res.json({returnCode : "FAILURE", data : null, errorCode : err.errorCode});
+		} else {
+			res.json({returnCode : "FAILURE", data : null, errorCode : 1014});
+		}
+	});
+}
 
 exports.getNotifications = function(req,res){
 	orgNotificationsHelper.getNotifications(req.params.id).then(function(result){

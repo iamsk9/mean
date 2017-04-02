@@ -1,9 +1,8 @@
-myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootScope, ResearcherService, $location) {
+myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootScope, $mdDialog, ResearcherService, $location) {
 
   function getNews() {
     var researcher_id = $rootScope.researcherDetails.id;
     ResearcherService.getNews(researcher_id).then(function(news){
-      console.log(news);
   		$scope.news = news;
   	}, function(err) {
   		$mdToast.show($mdToast.simple()
@@ -13,6 +12,37 @@ myapp.controller('ResearcherNewsController', function($scope, $mdToast, $rootSco
   	});
   }
   getNews();
+
+  $scope.openNews = function(item) {
+    console.log(item);
+    $scope.newsDetails = item;
+    $mdDialog.show({
+        controller : function($scope, theScope) {
+          $scope.theScope = theScope
+        },
+      templateUrl : 'news.tmpl.html',
+      parent : angular.element(document.body),
+      clickOutsideToClose:true,
+      locals : {
+        theScope : $scope
+      }
+    }).then(function(){
+    });
+  };
+
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+     }
 
   $scope.goToDashboard = function()
   {

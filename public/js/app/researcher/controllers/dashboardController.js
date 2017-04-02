@@ -9,6 +9,22 @@ myapp.controller('ResearcherDashboardController', function($scope, $rootScope, $
   }
   getDashboardDetails();
 
+  function getNewsCount() {
+    var id = $rootScope.researcherDetails.id;
+    ResearcherService.getNewsCount(id).then(function(newsCount){
+      if (newsCount > 0)
+        $rootScope.newsCount = newsCount;
+      else
+  		$rootScope.newsCount = 0;
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to fetch News")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
+  }
+  getNewsCount();
+
   $scope.goToDashboardResearcher = function()
   {
     $location.path('/researcherDashboardPage')
