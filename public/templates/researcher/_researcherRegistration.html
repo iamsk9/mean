@@ -30,15 +30,15 @@
                                <h1> Sign up </h1>
                                <p>
                                    <label for="usernamesignup" class="uname" >Your Name</label>
-                                   <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="Name" ng-model="researcher.name"/>
+                                   <input id="usernamesignup" name="usernamesignup" required="required" type="text" pattern="[a-zA-Z\s]+"  placeholder="Name" ng-model="researcher.name"/>
                                </p>
                                <p>
                                    <label for="emailsignup" class="youmail" > Your email</label>
-                                   <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com" ng-model="researcher.email"/>
+                                   <input id="emailsignup" name="emailsignup" required="required" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  placeholder="mysupermail@mail.com" ng-model="researcher.email"/>
                                </p>
                                <p>
                                    <label for="mobileno" class="youmobile" > Your Mobile</label>
-                                   <input id="mobileno" name="mobileno" required="required" type="tel" placeholder="Mobile Number" ng-model="researcher.mobile"/>
+                                   <input id="mobileno" name="mobileno" required="required" type="text" pattern="[789][0-9]{9}"  placeholder="Mobile Number" ng-model="researcher.mobile"/>
                                </p>
                                <p>
                                    <label for="nationality" class="younationality" > Your Nationality</label>
@@ -66,11 +66,11 @@
                                </p>
                                <p>
                                    <label for="city" class="youcity" > City Of Residence</label>
-                                   <input id="city" name="city" required="required" type="text" placeholder="MyResidence" ng-model="researcher.city"/>
+                                   <input id="city" name="city" required="required" type="text" pattern="[a-zA-Z\s]+"  placeholder="MyResidence" ng-model="researcher.city"/>
                                </p>
                                <p>
                                    <label for="organization" class="youorg" > Your Organization</label>
-                                   <input id="organization" name="organization" required="required" type="text" placeholder="MyOrganization" ng-model="researcher.organisation"/>
+                                   <input id="organization" name="organization" required="required" type="text"  pattern="[a-zA-Z\s]+" placeholder="MyOrganization" ng-model="researcher.organisation"/>
                                </p>
                                <p>
                                    <label for="gender" class="yougen" > Your Gender</label>
