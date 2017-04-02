@@ -33,36 +33,27 @@
 
 <md-content layout = "column" color:#ffffff flex>
   <div layout = "column">
-    <h2>Dashboard</h2>
+    <h2 align="center" style="color:#3366ff">Dashboard</h2>
   </div>
     <div layout = "row" layout-align = "space-between center" layout-wrap>
     <md-card  id="card_id">
       <md-card-content layout-align = "center center">
-        <h3 id="card_text" align="center">Number of Proposals </h3>
-        <h1></h1>
+        <h3 id="card_text" align="center">No of Proposals Recieved</h3>
+        <h1 align="center" style="color: #000000">{{dashboardDetails.proposalsCount}}</h1>
       </md-card-content>
     </md-card>
     <md-card  id="card_id">
       <md-card-content layout-align = "center center">
-        <h3 id="card_text" align="center">Number of Organizations</h3>
-        <h1></h1>
+        <h3 id="card_text" align="center">No of Proposals Accepted</h3>
+        <h1 align="center" style="color: #000000"></h1>
       </md-card-content>
     </md-card>
-    </div>
-    <div layout = "row" layout-align = "space-between center" layout-wrap>
     <md-card id="card_id">
       <md-card-content layout-align = "center center">
-        <h3 id="card_text" align="center" class="card_text">Successful Proposals</h3>
-        <h1></h1>
+        <h3 id="card_text" align="center" class="card_text">Total Funding Issued</h3>
+        <h1 align="center" style="color: #000000">15000</h1>
       </md-card-content>
     </md-card>
-    <md-card  id="card_id">
-      <md-card-content layout-align = "center center" layout-wrap>
-        <h3 id="card_text" align="center">Total Funding</h3>
-        <h1></h1>
-      </md-card-content>
-    </md-card>
-  </div>
 </md-content>
 </div>
 </div>

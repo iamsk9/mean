@@ -1,4 +1,17 @@
 myapp.controller('DashboardController', function($scope, $rootScope, $mdToast, OrgService, $location) {
+  $scope.dashboardDetails = {};
+  function getDashboardDetails() {
+    var orgId = $rootScope.orgDetails.id;    
+      OrgService.getDashboardDetails(orgId).then(function(data){
+      $scope.dashboardDetails.proposalsCount = data.noofproposals;
+      console.log("hello00000000000000");
+      console.log(data);
+      console.location(dashboardDetails.proposalsCount);
+      //$scope.dashboardDetails.organisationsCount = data.nooforganizations;
+    }, function(err) {
+    });
+  }
+  getDashboardDetails();
   function getNotificationsCount() {
     var orgId = $rootScope.orgDetails.id;
     OrgService.getNotificationsCount(orgId).then(function(notificationsCount){

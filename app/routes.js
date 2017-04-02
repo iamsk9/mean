@@ -19,6 +19,8 @@ var ResearcherController = require('./researcher/controllers/researcherControlle
 
 var DashboardController = require('./researcher/controllers/dashboardController.js');
 
+var DashboardControllerOrg = require('./org/controllers/dashBoardControllerOrg.js');
+
 var OrganisationsController = require('./researcher/controllers/organisationsController.js');
 
 var ProposalsController = require('./researcher/controllers/proposalsController.js');
@@ -39,6 +41,8 @@ module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.post('/registerResearcher', ResearcherController.registerResearcher);
 
   apiRoutes.get('/dashboardDetails/:id', ResearcherController.getDashboardDetails);
+
+  apiRoutes.get('/dashboardDetailsOrg/:id', DashboardControllerOrg.getDashboardDetailsOrg);
 
   apiRoutes.get('/organisations', OrganisationsController.getOrganisations);
 

@@ -811,13 +811,14 @@ section {
 }
 #card_text
 {
-	color:#ffffff;
+	color:#000000;
 }
 #card_id
 {
-	width : 500px;
-	height: 150px;
-	background-color:#532862;
+	width : 300px;
+	height: 170px;
+	border-radius: 25px;
+	background-color:#ffffcc;
 
 }
 #register_wrapper p.button input {

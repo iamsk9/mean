@@ -26,6 +26,19 @@ myapp.factory('OrgService', function(Restangular, $q){
 			});
 			return notificationsCountDefer.promise;
 		},
+		getDashboardDetails: function(id) {
+			var dashboardDefer = $q.defer();
+			Restangular.one('/dashboardDetailsOrg/'+id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					dashboardDefer.resolve(data.data);
+				} else {
+					dashboardDefer.reject();
+				}
+			}, function(err){
+				dashboardDefer.reject(err);
+			});
+			return dashboardDefer.promise;
+		},
 		markAsRead: function(id) {
 			var markAsReadDefer = $q.defer();
 			var payload = {
