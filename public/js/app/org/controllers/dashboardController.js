@@ -35,12 +35,12 @@ myapp.controller('DashboardController', function($scope, $rootScope, $mdToast, O
   {
     $location.path('/orgNews')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/orgUpdates')
-  }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

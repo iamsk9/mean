@@ -1,4 +1,49 @@
-myapp.controller('ResearcherNotificationsController', function($scope, $mdToast, MyService, $location) {
+myapp.controller('ResearcherNotificationsController', function($scope, $rootScope, $mdDialog, $mdToast, ResearcherService, $location) {
+
+  function getNotifications() {
+    var id = $rootScope.researcherDetails.id;
+    ResearcherService.getNotifications(id).then(function(notifications){
+      console.log(notifications);
+  		$scope.notifications = notifications;
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to fetch notifications")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
+  }
+  getNotifications();
+
+  $scope.openNotification = function(item) {
+    console.log(item);
+    $scope.notDetails = item;
+    $mdDialog.show({
+ 	    	controller : function($scope, theScope) {
+ 	    		$scope.theScope = theScope
+ 	    	},
+ 			templateUrl : 'notification.tmpl.html',
+ 			parent : angular.element(document.body),
+ 			clickOutsideToClose:true,
+ 			locals : {
+ 				theScope : $scope
+ 			}
+ 	 	}).then(function(){
+    });
+  };
+
+  function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+   }
 
   $scope.goToDashboard = function()
   {
@@ -20,10 +65,6 @@ myapp.controller('ResearcherNotificationsController', function($scope, $mdToast,
   {
     $location.path('/news')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/updates')
-  }
   $scope.goToNewProposal = function()
   {
     $location.path('/newProposal')
@@ -34,6 +75,10 @@ myapp.controller('ResearcherNotificationsController', function($scope, $mdToast,
   }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

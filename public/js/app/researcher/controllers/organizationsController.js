@@ -20,10 +20,6 @@ myapp.controller('ResearcherOrganizationsController', function($scope, $mdToast,
   {
     $location.path('/news')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/updates')
-  }
   $scope.goToNewProposal = function()
   {
     $location.path('/newProposal')
@@ -34,6 +30,10 @@ myapp.controller('ResearcherOrganizationsController', function($scope, $mdToast,
   }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

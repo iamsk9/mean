@@ -1,17 +1,31 @@
 myapp.factory('ResearcherService', function(Restangular, $q){
 	return {
-		getPreviousproposals: function(id) {
-			var previousproposalsDefer = $q.defer();
-			Restangular.one('/previousProposals/'+id).get().then(function(data) {
+		getNotifications: function(id) {
+			var notificationDefer = $q.defer();
+			Restangular.one('/resnotifications/'+parseInt(id)).get().then(function(data) {
 				if(data.returnCode == "SUCCESS") {
-					previousproposalsDefer.resolve(data.data);
+					notificationDefer.resolve(data.data);
 				} else {
-					previousproposalsDefer.reject();
+					notificationDefer.reject();
 				}
 			}, function(err){
-				previousproposalsDefer.reject(err);
+				notificationDefer.reject(err);
 			});
-			return previousproposalsDefer.promise;
+			return notificationDefer.promise;
+		},
+
+		getNotificationsCount: function(id) {
+			var notificationsCountDefer = $q.defer();
+			Restangular.one('/renotificationsCount/'+id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					notificationsCountDefer.resolve(data.data);
+				} else {
+					notificationsCountDefer.reject();
+				}
+			}, function(err){
+				notificationsCountDefer.reject(err);
+			});
+			return notificationsCountDefer.promise;
 		},
 		getOrganisations: function() {
 			var organisationsDefer = $q.defer();

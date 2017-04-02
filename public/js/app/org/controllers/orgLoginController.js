@@ -21,21 +21,17 @@ myapp.controller('OrgLoginController', function($scope, $rootScope, $mdToast, Or
         console.log(data.data.username);
         $rootScope.orgDetails = data.data;
         console.log($rootScope.orgDetails);
+        $mdToast.show($mdToast.simple()
+          .textContent("Successful Login")
+          .position("bottom right")
+          .hideDelay(5000));
         $location.path('/organisationDashboardPage');
       }, function(err){
-        if(err.errorCode == 1010) {
-          $scope.loginForm.username.$error.notRegistered = true;
-          $scope.loginForm.username.$invalid = true;
-        } else if(err.errorCode == 1011) {
-          $scope.loginForm.password.$error.incorrect = true;
-          $scope.loginForm.password.$invalid = true;
-        } else if(err.errorCode == 1029) {
-          $scope.loginForm.password.$error.clientBlocked = true;
-          $scope.loginForm.password.$invalid = true;
-        } else if(err.errorCode == 1014) {
-          $scope.loginForm.password.$error.serverError = true;
-          $scope.loginForm.password.$invalid = true;
-        }
+        console.log("error");
+        $mdToast.show($mdToast.simple()
+          .textContent("Incorrect Username or password")
+          .position("bottom right")
+          .hideDelay(5000));
       });
     }
   }

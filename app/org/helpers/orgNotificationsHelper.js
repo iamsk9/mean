@@ -70,7 +70,7 @@ exports.authenticateOrg = function(req) {
 
 exports.getNotifications = function(req) {
 	var getNotificationsDefer = q.defer();
-	var query = "SELECT noti.id, noti.not_name, re.researcher_name, noti.not_read, pro.message, pro.min_fund from notifications noti INNER JOIN proposals pro ON noti.pro_id = pro.id INNER JOIN researcher re ON re.id = pro.researcher_id where noti.deleted_at is NULL and pro.deleted_at is NULL and noti.org_id = ?";
+	var query = "SELECT noti.id, noti.not_name, re.researcher_name, pro.status, noti.not_read, pro.id as pro_id, pro.message, re.id, pro.min_fund from notifications noti INNER JOIN proposals pro ON noti.pro_id = pro.id INNER JOIN researcher re ON re.id = pro.researcher_id where noti.deleted_at is NULL and pro.deleted_at is NULL and noti.org_id = ?";
 	db.getConnection().then(function(connection) {
 		return utils.runQuery(connection, query, req);
 	}).then(function(results) {
@@ -94,10 +94,23 @@ exports.getNotificationsCount = function(req) {
 	return getNotificationsCountDefer.promise;
 }
 
+exports.getNews = function(req) {
+	var getNewsDefer = q.defer();
+	var query = "SELECT * FROM news WHERE org_id = ?";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getNewsDefer.resolve(results);
+	}).catch(function(err) {
+		getNewsDefer.reject(err);
+	});
+	return getNewsDefer.promise;
+}
+
 exports.addNews = function(req) {
 	var addNewsDeferred = q.defer();
 	var conn;
-	var addNewsQuery = "INSERT INTO news(name, details, org_id, max_fund, last_date, created_at, modified_at) VALUES (?,?,?,?,?,?,?)";
+	var addNewsQuery = "INSERT INTO news(name, details, org_id, min_fund, last_date, created_at, modified_at) VALUES (?,?,?,?,?,?,?)";
 
 	db.getConnection().then(function(connection) {
 			console.log("asdgasdg");
@@ -119,6 +132,26 @@ exports.addNews = function(req) {
 		addNewsDeferred.reject(err);
 	});
 	return addNewsDeferred.promise;
+}
+
+exports.sendNotification = function(req) {
+	var sendNotificationDeferred = q.defer();
+	var conn;
+	var addQuery = "INSERT INTO orgNotifications(pro_id, not_name, not_read, message, org_id, created_at, modified_at) VALUES (?,?,?,?,?,?,?)";
+	db.getConnection().then(function(connection) {
+		 console.log("Inside");
+		 conn = connection;
+		 return utils.runQuery(conn, addQuery, [req.pro_id, req.not_name, 0, req.message, req.org_id,
+			 moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')], true);
+	 }).then(function() {
+		 var sendNotification = "UPDATE proposals SET status = ? WHERE id = ?";
+		 return utils.runQuery(conn, sendNotification, [req.status, req.org_id], true);
+	 }).then(function(){
+		 sendNotificationDeferred.resolve();
+	 }).catch(function(err) {
+			 sendNotificationDeferred.reject(err);
+	 });
+	 return sendNotificationDeferred.promise;
 }
 
 exports.addOrg = function(req) {

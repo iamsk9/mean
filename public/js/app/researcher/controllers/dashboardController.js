@@ -9,6 +9,23 @@ myapp.controller('ResearcherDashboardController', function($scope, $rootScope, $
   }
   getDashboardDetails();
 
+  function getNotificationsCount() {
+    var id = $rootScope.researcherDetails.id;
+    ResearcherService.getNotificationsCount(id).then(function(notificationsCount){
+      console.log(notificationsCount);
+      if (notificationsCount > 0)
+        $rootScope.notificationsCount = notificationsCount;
+      else
+  		$rootScope.notificationsCount = 0;
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to fetch notifications")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
+  }
+  getNotificationsCount();
+
   function getNewsCount() {
     var id = $rootScope.researcherDetails.id;
     ResearcherService.getNewsCount(id).then(function(newsCount){
@@ -45,10 +62,6 @@ myapp.controller('ResearcherDashboardController', function($scope, $rootScope, $
   {
     $location.path('/news')
   }
-  $scope.goToUpdates = function()
-  {
-    $location.path('/updates')
-  }
   $scope.goToNewProposal = function()
   {
     $location.path('/newProposal')
@@ -59,6 +72,10 @@ myapp.controller('ResearcherDashboardController', function($scope, $rootScope, $
   }
   $scope.goToHomePage = function()
   {
+    $mdToast.show($mdToast.simple()
+      .textContent("Successful Logout")
+      .position("bottom right")
+      .hideDelay(5000));
     $location.path('/')
   }
 });

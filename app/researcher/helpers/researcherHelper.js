@@ -29,6 +29,18 @@ function generateHash(string) {
     return hashDefer.promise;
 }
 
+exports.getNotifications = function(req) {
+	var getNotificationsDefer = q.defer();
+	var query = "SELECT noti.pro_id, noti.not_name, noti.message, org.org_name, noti.not_read from orgnotifications noti INNER JOIN organisations org ON noti.org_id = org.id where noti.deleted_at is NULL and noti.pro_id = ?";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getNotificationsDefer.resolve(results);
+	}).catch(function(err) {
+		getNotificationsDefer.reject(err);
+	});
+	return getNotificationsDefer.promise;
+}
 
 function comparePassword(candidatePassword, dbPassword) {
 	var comparePasswordDefer = q.defer();
@@ -74,7 +86,7 @@ exports.authenticateUser = function(req) {
 							};
 							authenticateUserDefer.resolve(result);
 					} else {
-						
+
 						authenticateUserDefer.reject({errorCode : 1011});
 					}
 					connection.release();
@@ -126,7 +138,7 @@ exports.registerResearcher = function(req) {
 
 exports.getNews = function() {
 	var getNewsDefer = q.defer();
-	var query = "SELECT news.id, news.name, news.max_fund, news.last_date, org.org_name, news.details from news news INNER JOIN organisations org ON news.org_id = org.id where news.deleted_at is NULL";
+	var query = "SELECT news.id, news.name, news.min_fund, news.last_date, org.org_name, news.details from news news INNER JOIN organisations org ON news.org_id = org.id where news.deleted_at is NULL";
 	db.getConnection().then(function(connection) {
 		return utils.runQuery(connection, query);
 	}).then(function(results) {
@@ -157,4 +169,18 @@ exports.getDashboardDetails = function(req) {
 			 getDashboardDeferred.reject(err);
 	 });
 	 return getDashboardDeferred.promise;
+}
+
+
+exports.getNotificationsCount = function(req) {
+	var getNotificationsCountDefer = q.defer();
+	var query = "SELECT count(*) as len FROM orgnotifications WHERE deleted_at is NULL AND not_read = 0 AND org_id = ?";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getNotificationsCountDefer.resolve(results[0].len);
+	}).catch(function(err) {
+		getNotificationsCountDefer.reject(err);
+	});
+	return getNotificationsCountDefer.promise;
 }

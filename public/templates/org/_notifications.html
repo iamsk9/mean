@@ -20,7 +20,6 @@
           <li><a ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li><a ng-click="goToNews()"><span class="glyphicon glyphicon-cloud"></span> News</a></li>
-          <li><a ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
        </ul>
      </div>
    </nav>
@@ -73,7 +72,17 @@
            <label class="textDialog">Minimum Fund: {{theScope.notDetails.min_fund}}</label>
          </md-input-container>
          <md-input-container style = "width : 300px" class = "md-block">
-
+           <md-select ng-model="theScope.notification.status" placeholder="Select the Status" class="md-no-underline" required>
+            <md-option value="review">Review</md-option>
+            <md-option value="reject">Reject</md-option>
+            <md-option value="Success">Success</md-option>
+          </md-select>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <textarea ng-model="theScope.notification.message" md-maxlength="2000" rows="150" name="message"></textarea>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <md-button class="md-raised md-primary" ng-click="theScope.sendNotification()">Reply</md-button>
          </md-input-container>
        </div>
 		 </md-dialog-content>

@@ -16,13 +16,12 @@
       <div class="side-menu-container">
         <ul class="nav navbar-nav">
           <li><a href="#/researcherDashboardPage" ng-click="goToDashboard()"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-          <li><a ng-click="goToNotification()"><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+          <li><a ng-click="goToNotification()"><span class="glyphicon glyphicon-envelope"></span> Notifications ({{notificationsCount}})</a></li>
           <li><a ng-click="goToNewProposal()"><span class="glyphicon glyphicon-plus"></span> New Proposals</a></li>
           <li class="active"><a ng-click="goToPreviousProposals()"><span class="glyphicon glyphicon-ok"></span> Previous Proposals</a></li>
           <li><a ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li><a ng-click="goToNews()"><span class="glyphicon glyphicon-cloud"></span> News ({{newsCount}})</a></li>
-          <li><a ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
        </ul>
      </div>
    </nav>

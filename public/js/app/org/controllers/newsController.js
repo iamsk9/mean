@@ -1,4 +1,4 @@
-myapp.controller('NewsController', function($scope, $mdToast, OrgService, $location, $mdDialog) {
+myapp.controller('NewsController', function($scope, $rootScope, $mdToast, OrgService, $location, $mdDialog) {
   $scope.addNews = function() {
     $mdDialog.show({
         controller : function($scope, theScope) {
@@ -32,6 +32,51 @@ myapp.controller('NewsController', function($scope, $mdToast, OrgService, $locat
   	});
   };
 
+  function getNews() {
+    var org_id = $rootScope.orgDetails.id;
+    console.log(org_id);
+    OrgService.getNews(org_id).then(function(news){
+  		$scope.news = news;
+  	}, function(err) {
+  		$mdToast.show($mdToast.simple()
+  		.textContent("Unable to fetch news")
+  		.position("top right")
+  		.hideDelay(5000));
+  	});
+  }
+  getNews();
+
+  $scope.openNews = function(item) {
+    console.log(item);
+    $scope.newsDetails = item;
+    $mdDialog.show({
+        controller : function($scope, theScope) {
+          $scope.theScope = theScope
+        },
+      templateUrl : 'news.tmpl.html',
+      parent : angular.element(document.body),
+      clickOutsideToClose:true,
+      locals : {
+        theScope : $scope
+      }
+    }).then(function(){
+    });
+  };
+
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+     }
+
     $scope.goToDashboard = function()
     {
       $location.path('/organisationDashboardPage')
@@ -52,12 +97,12 @@ myapp.controller('NewsController', function($scope, $mdToast, OrgService, $locat
     {
       $location.path('/orgNews')
     }
-    $scope.goToUpdates = function()
-    {
-      $location.path('/orgUpdates')
-    }
     $scope.goToHomePage = function()
     {
+      $mdToast.show($mdToast.simple()
+        .textContent("Successful Logout")
+        .position("bottom right")
+        .hideDelay(5000));
       $location.path('/')
     }
 });

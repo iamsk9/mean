@@ -20,7 +20,6 @@
           <li><a href="#/orgOrganizations" ng-click="goToOrganisation()"><span class="glyphicon glyphicon-plane"></span> Organisations</a></li>
           <li><a href="#/orgProfile" ng-click="goToProfile()"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
           <li class="active" ng-click="goToNews()"><a><span class="glyphicon glyphicon-cloud"></span> News</a></li>
-          <li><a href="#/orgUpdates" ng-click="goToUpdates()"><span class="glyphicon glyphicon-signal"></span> Updates</a></li>
        </ul>
      </div>
    </nav>
@@ -34,6 +33,18 @@
        </div>
        <md-button class="md-raised md-primary" style="float: right;" ng-click="addNews()">Add News</md-button> <br><br><br>
        <div class="panel-body">
+         <md-content>
+           <md-list flex>
+             <md-list-item class="md-3-line" value="{{new.id}}" ng-repeat="new in news" ng-click="openNews(new)">
+               <img src="../../images/s1.png" class="md-avatar" alt="$$" />
+               <div class="md-list-item-text" layout="column">
+                 <h3>{{ new.name }}</h3>
+                 <h4></h4>
+               </div>
+             </md-list-item>
+             <md-divider ></md-divider>
+           </md-list>
+         </md-content>
        </div>
      </div>
    </div>
@@ -77,6 +88,41 @@
  		       </div>
          </div>
        </form>
+		 </md-dialog-content>
+	</md-dialog>
+</script>
+
+<script type = "text/ng-template" id = "news.tmpl.html">
+	<md-dialog>
+    <md-toolbar>
+           <div class="md-toolbar-tools">
+             <h2>{{theScope.newsDetails.name}}</h2>
+           </div>
+    </md-toolbar>
+		 <md-dialog-content style="width:700px;max-height:2000px;margin-top:20px;margin-left:auto;margin-right: auto">
+       <div layout = "column" layout-align = "center center">
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Notification Id : {{theScope.newsDetails.id}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Organisation : {{theScope.newsDetails.org_name}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Notification Details: {{theScope.newsDetails.details}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Minimum Fund: {{theScope.newsDetails.max_fund}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Last Date : {{theScope.newsDetails.last_date}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+
+         </md-input-container>
+       </div>
 		 </md-dialog-content>
 	</md-dialog>
 </script>
