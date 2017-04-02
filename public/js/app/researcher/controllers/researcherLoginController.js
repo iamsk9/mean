@@ -4,9 +4,7 @@ myapp.controller('ResearcherLoginController', function($scope, $rootScope, $mdTo
 			if($scope.login.email && $scope.login.email != "" && $scope.login.password &&
 				$scope.login.password != "") {
 				ResearcherService.signIn($scope.login).then(function(data){
-					console.log(data.data.email);
 					$rootScope.researcherDetails = data.data;
-					console.log($rootScope.researcherDetails);
 					$location.path('/researcherDashboardPage');
 				}, function(err){
 					if(err.errorCode == 1010) {

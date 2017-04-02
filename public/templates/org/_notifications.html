@@ -35,7 +35,7 @@
        <div class="panel-body">
          <md-content>
            <md-list flex>
-             <md-list-item class="md-3-line" ng-repeat="not in notifications" ng-click="openNotification()">
+             <md-list-item class="md-3-line" value="{{not.id}}" ng-repeat="not in notifications" ng-click="openNotification(not)">
                <img src="../../images/s1.png" class="md-avatar" alt="$$" />
                <div class="md-list-item-text" layout="column">
                  <h3>{{ not.not_name }}</h3>
@@ -53,8 +53,29 @@
 
 <script type = "text/ng-template" id = "notification.tmpl.html">
 	<md-dialog>
-		 <md-dialog-content>
-       Working
+    <md-toolbar>
+           <div class="md-toolbar-tools">
+             <h2>{{theScope.notDetails.not_name}}</h2>
+           </div>
+    </md-toolbar>
+		 <md-dialog-content style="width:600px;max-height:1300px;margin-top:20px;margin-left:auto;margin-right: auto">
+       <div layout = "column" layout-align = "center center">
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Proposal Id : {{theScope.notDetails.id}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Researcher Name : {{theScope.notDetails.researcher_name}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Message: {{theScope.notDetails.message}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+           <label class="textDialog">Minimum Fund: {{theScope.notDetails.min_fund}}</label>
+         </md-input-container>
+         <md-input-container style = "width : 300px" class = "md-block">
+
+         </md-input-container>
+       </div>
 		 </md-dialog-content>
 	</md-dialog>
 </script>

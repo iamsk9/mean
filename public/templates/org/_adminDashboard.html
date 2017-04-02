@@ -35,6 +35,13 @@
                  <div ng-message="required">This is required.</div>
                </div>
              </md-input-container>
+             <md-input-container style = "width : 300px" class = "md-block">
+               <label>Maximum Funding</label>
+               <input required ng-model="orgForm.max_fund"/>
+               <div ng-messages="orgForm.max_fund.$error">
+                 <div ng-message="required">This is required.</div>
+               </div>
+             </md-input-container>
              <md-datepicker style = "width : 300px" ng-model="orgForm.established_on" md-placeholder="Enter date"></md-datepicker>
              <div layout = "row" layout-align = "center center">
    						<md-button class="md-raised md-primary" style = "font-size : 1.3em"

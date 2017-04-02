@@ -84,7 +84,9 @@ myapp.factory('ResearcherService', function(Restangular, $q){
 		 	var payload = {
 		 		name : proposalDetails.name,
 		 		org_id : parseInt(proposalDetails.org_id),
-		 		doc : proposalDetails.myFile.name,
+		 		doc : proposalDetails.file.name,
+				message : proposalDetails.message,
+				min_fund : proposalDetails.fund,
 		 		researcher_id: id
 		 	}
 		 	Restangular.one('/submitProposal').post('', payload).then(function(data) {
