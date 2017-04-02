@@ -1,8 +1,9 @@
 myapp.controller('NewProposalController', function($scope, $mdToast, $rootScope, ResearcherService, $location) {
-
+  var organisations = {};
   function getOrganisations() {
-    ResearcherService.getOrganisations().then(function(organisations){
-  		$scope.organisations = organisations;
+    ResearcherService.getOrganisations().then(function(data){
+  		organisations = data;
+      $scope.organisations = data;
   	}, function(err) {
   		$mdToast.show($mdToast.simple()
   		.textContent("Unable to fetch organisations")
@@ -14,7 +15,7 @@ myapp.controller('NewProposalController', function($scope, $mdToast, $rootScope,
 
   $scope.submitProposal = function()
   {
-    var file = $scope.proposal.myFile.name;
+    var file = $scope.proposal.file.name;
     var uploadUrl = "../../../../../tmp";
     var fd = new FormData();
     /*fd.append("file", file);

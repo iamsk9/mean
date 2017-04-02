@@ -13,7 +13,10 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
   }
   getNotifications();
 
-  $scope.openNotification = function() {
+  $scope.openNotification = function(item) {
+    console.log(item);
+    $scope.notDetails = item;
+    markAsRead(item.id);
     $mdDialog.show({
  	    	controller : function($scope, theScope) {
  	    		$scope.theScope = theScope
@@ -25,7 +28,15 @@ myapp.controller('NotificationsController', function($scope, $rootScope, $mdToas
  				theScope : $scope
  			}
  	 	}).then(function(){
-           });
+    });
+  };
+
+  function markAsRead(id) {
+    OrgService.markAsRead(id).then(function(){
+      console.log("notification marked as read");
+  	}, function(err) {
+  		console.log("Error");
+  	});
   };
 
   function DialogController($scope, $mdDialog) {

@@ -70,7 +70,7 @@ exports.authenticateOrg = function(req) {
 
 exports.getNotifications = function(req) {
 	var getNotificationsDefer = q.defer();
-	var query = "SELECT noti.id, noti.not_name, re.researcher_name, noti.not_read from notifications noti INNER JOIN proposals pro ON noti.pro_id = pro.id INNER JOIN researcher re ON re.id = pro.researcher_id where noti.deleted_at is NULL and pro.deleted_at is NULL and noti.org_id = ?";
+	var query = "SELECT noti.id, noti.not_name, re.researcher_name, noti.not_read, pro.message, pro.min_fund from notifications noti INNER JOIN proposals pro ON noti.pro_id = pro.id INNER JOIN researcher re ON re.id = pro.researcher_id where noti.deleted_at is NULL and pro.deleted_at is NULL and noti.org_id = ?";
 	db.getConnection().then(function(connection) {
 		return utils.runQuery(connection, query, req);
 	}).then(function(results) {
@@ -79,6 +79,19 @@ exports.getNotifications = function(req) {
 		getNotificationsDefer.reject(err);
 	});
 	return getNotificationsDefer.promise;
+}
+
+exports.getNotificationsCount = function(req) {
+	var getNotificationsCountDefer = q.defer();
+	var query = "SELECT count(*) as len FROM notifications WHERE deleted_at is NULL AND not_read = 0 ";
+	db.getConnection().then(function(connection) {
+		return utils.runQuery(connection, query, req);
+	}).then(function(results) {
+		getNotificationsCountDefer.resolve(results[0].len);
+	}).catch(function(err) {
+		getNotificationsCountDefer.reject(err);
+	});
+	return getNotificationsCountDefer.promise;
 }
 
 exports.addNews = function(req) {
@@ -112,13 +125,13 @@ exports.addOrg = function(req) {
 
 	var addOrgDeferred = q.defer();
 	var conn;
-	var addOrgQuery = "INSERT INTO organisations(org_name, established_on, username, password, created_at, modified_at) VALUES (?,?,?,?,?,?)";
+	var addOrgQuery = "INSERT INTO organisations(org_name, established_on, username, password, max_fund, created_at, modified_at) VALUES (?,?,?,?,?,?)";
 
 	db.getConnection().then(function(connection) {
 			console.log("asdgasdg");
 			generateHash(req.password).then(function(hash){
 				console.log('inside hash');
-				connection.query(addOrgQuery, [req.org_name, req.established_on, req.username, hash,
+				connection.query(addOrgQuery, [req.org_name, req.established_on, req.username, hash, req.max_fund,
 					 moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('YYYY-MM-DD HH:mm:ss')]
 				, function(err, results) {
 					console.log("query");

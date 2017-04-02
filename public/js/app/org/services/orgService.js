@@ -13,6 +13,32 @@ myapp.factory('OrgService', function(Restangular, $q){
 			});
 			return notificationDefer.promise;
 		},
+		getNotificationsCount: function(id) {
+			var notificationsCountDefer = $q.defer();
+			Restangular.one('/notificationsCount/'+id).get().then(function(data) {
+				if(data.returnCode == "SUCCESS") {
+					notificationsCountDefer.resolve(data.data);
+				} else {
+					notificationsCountDefer.reject();
+				}
+			}, function(err){
+				notificationsCountDefer.reject(err);
+			});
+			return notificationsCountDefer.promise;
+		},
+		markAsRead: function(id) {
+			var markAsReadDefer = $q.defer();
+			Restangular.one('/markAsRead/'+id).patch().then(function() {
+				if(data.returnCode == "SUCCESS") {
+					markAsReadDefer.resolve();
+				} else {
+					markAsReadDefer.reject();
+				}
+			}, function(err){
+				markAsReadDefer.reject(err);
+			});
+			return markAsReadDefer.promise;
+		},
 		 addNews : function(newsDetails) {
 		 	var addNewsDefer = $q.defer();
 		 	console.log(newsDetails);

@@ -45,6 +45,8 @@ module.exports = function(app, apiRoutes, blobService) {
   apiRoutes.get('/getNews', ResearcherController.getNews);
 
   apiRoutes.get('/orgNotifications/:id', orgNotificationsController.getNotifications);
+
+  apiRoutes.get('/notificationsCount/:id', orgNotificationsController.getNotificationsCount);
 /*
 	app.get('/', IndexController.handle);
 
